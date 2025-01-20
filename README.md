@@ -1,0 +1,1 @@
+This folder contains the code and files for the first part of the project: demonstrating the effectiveness of Markov-Chain Monte Carlo (MCMC) methods on synthetic "toy" datasets.
