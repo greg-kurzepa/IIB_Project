@@ -2,9 +2,8 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button, Slider
 import numpy as np
 
-import _pile_and_soil
-import _model_shooting
-import _model_springs
+import packaged._pile_and_soil as _pile_and_soil
+import packaged._model_springs as _model_springs
 
 s = _pile_and_soil.Soil()
 p = _pile_and_soil.Pile(0.15, 10, 2275, E=20e9) # https://ukrstarline.ua/en/reinforced-concrete-products/reinforced-concrete-pile-driven/reinforced-concrete-pile-driven-c-10030-10

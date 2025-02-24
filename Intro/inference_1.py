@@ -11,7 +11,7 @@ print(f"Running on PyMC v{pm.__version__}")
 # %config InlineBackend.figure_format = 'retina'
 az.style.use("arviz-darkgrid")
 
-def plot_xY(x, Y, ax):
+def plot_xY(x, Y, ax, label=None):
     quantiles = Y.quantile((0.025, 0.25, 0.5, 0.75, 0.975), dim=("chain", "draw")).transpose()
 
     az.plot_hdi(
@@ -28,7 +28,7 @@ def plot_xY(x, Y, ax):
         smooth=False,
         ax=ax,
     )
-    ax.plot(x, quantiles.sel(quantile=0.5), color="C1", lw=3)
+    ax.plot(x, quantiles.sel(quantile=0.5), color="C1", lw=3, label=label)
 
 class Pile:
     def __init__(self, R, L, W):
@@ -75,7 +75,7 @@ F = g(pile, z, alpha, gamma, N_c, s_u0, rho)
 #%%
 
 # Initialize random number generator
-RANDOM_SEED = 8927
+RANDOM_SEED = 8928
 rng = np.random.default_rng(RANDOM_SEED)
 
 # Predictor variable
@@ -102,12 +102,12 @@ with model:
     measured_force = pm.MutableData("measured_force", F_noisy) # measured noisy force
 
     # Priors
-    shear_utilisation = pm.LogNormal("shear_utilisation", mu=-0.6, sigma=0.3)
+    # shear_utilisation = pm.LogNormal("shear_utilisation", mu=-0.6, sigma=0.3)
     undrained_strength = pm.LogNormal("undrained_strength", mu=10.4, sigma=0.11)
     noise_sigma = pm.Normal("noise_sigma", mu=4e3, sigma=0.5e3)
 
     force = pm.Deterministic(
-        "force", g(pile, depth, shear_utilisation, gamma, N_c, undrained_strength, rho)
+        "force", g(pile, depth, alpha, gamma, N_c, undrained_strength, rho)
     )
 
     obs = pm.Normal("obs", mu=force, sigma=noise_sigma, observed=measured_force)
@@ -117,7 +117,7 @@ pm.model_to_graphviz(model)
 #%%
 
 with model:
-    idata = pm.sample_prior_predictive(random_seed=RANDOM_SEED)
+    idata = pm.sample_prior_predictive(draws=1000, random_seed=RANDOM_SEED)
 
 # plot prior on parameters
 # az.plot_trace(idata, var_names=["undrained_strength"])
@@ -126,9 +126,9 @@ with model:
 figsize = (10,5)
 fig, ax = plt.subplots(figsize=figsize)
 
-plot_xY(z, idata.prior_predictive["obs"], ax)
-ax.scatter(z, F_noisy, label="observed", alpha=0.6, zorder=100)
-ax.set(title="Prior predictive distribution")
+plot_xY(z, idata.prior_predictive["obs"]/1000, ax, label="prior predictive")
+ax.scatter(z, F_noisy/1000, label="observed", alpha=0.6, zorder=100)
+ax.set(title="$F(z)$, Prior predictive distribution")
 # plt.gca().invert_yaxis()
 plt.legend()
 plt.show()
@@ -140,15 +140,24 @@ plt.show()
 
 # draw from posterior
 with model:
-    idata.extend(pm.sample(random_seed=RANDOM_SEED, cores=1))
+    post_trace = pm.sample(random_seed=RANDOM_SEED, chains=2, cores=1, keep_warning_stat=True)
+    idata.extend(post_trace)
 
 az.plot_trace(idata, var_names=["~force"])
 plt.show()
 
 #%%
 
+divergent = np.array(post_trace["sample_stats"]["diverging"])
+print("Number of Divergent %d" % divergent.nonzero()[0].size)
+divperc = divergent.nonzero()[0].size / len(post_trace) * 100
+print("Percentage of Divergent %.1f" % divperc)
+
+#%%
+
+# Plot the prior and posterior distributions.
+# NOTE, the prior will be the sampled prior for the predictive distribution and does not reflect the actual prior used in inference.
 az.plot_dist_comparison(idata, var_names=["undrained_strength"])
-az.plot_dist_comparison(idata, var_names=["shear_utilisation"])
 az.plot_dist_comparison(idata, var_names=["noise_sigma"])
 
 #%%
@@ -158,12 +167,12 @@ with model:
 
 fig, ax = plt.subplots(figsize=figsize)
 
-az.plot_hdi(z, idata.posterior_predictive["obs"], hdi_prob=0.5, smooth=False)
-az.plot_hdi(z, idata.posterior_predictive["obs"], hdi_prob=0.95, smooth=False)
-ax.scatter(z, F_noisy, label="observed", alpha=0.6)
-ax.set(title="Posterior predictive distribution")
-ax.set_xlabel("depth z")
-ax.set_ylabel("Force (N)")
+az.plot_hdi(z, idata.posterior_predictive["obs"]/1000, hdi_prob=0.5, smooth=False)
+az.plot_hdi(z, idata.posterior_predictive["obs"]/1000, hdi_prob=0.95, smooth=False)
+ax.scatter(z, F_noisy/1000, label="observed", alpha=0.6)
+ax.set(title="$F(z)$, Posterior predictive distribution")
+ax.set_xlabel("depth $z$")
+ax.set_ylabel("$F(z) (kN)$")
 plt.legend()
 plt.show()
 # %%

@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Button, Slider
 
-import _pile_and_soil
-import _model_shooting
-import _model_springs
+import packaged._pile_and_soil as _pile_and_soil
+import packaged._model_springs as _model_springs
 
 s = _pile_and_soil.Soil()
-p = _pile_and_soil.Pile(0.15, 10, 2275, E=20e9) # https://ukrstarline.ua/en/reinforced-concrete-products/reinforced-concrete-pile-driven/reinforced-concrete-pile-driven-c-10030-10
+p = _pile_and_soil.Pile(0.15, 30, 2275, E=20e9)
+# p = _pile_and_soil.Pile(0.15, 10, 2275, E=20e9) # https://ukrstarline.ua/en/reinforced-concrete-products/reinforced-concrete-pile-driven/reinforced-concrete-pile-driven-c-10030-10
 system = _pile_and_soil.System(p, s)
 
 P = 200e3 # top axial load
@@ -16,25 +16,23 @@ def slider_wrapper(pile_length, alpha, model):
     system.p.L = pile_length
     system.s.alpha = alpha
 
-    if model == "shooting":
-        return _model_shooting.solve(system, P, N)
-    elif model == "springs":
-        return _model_springs.solve(system, P, N)
-    elif model == "springs_stable":
+    if model == "springs":
         return _model_springs.solve_stable(system, P, N)
     else:
-        raise ValueError("model must be 'shooting' or 'springs'")
+        raise ValueError(f"could not find specified model '{model}'")
 
 pile_length = system.p.L
 alpha = system.s.alpha
 
+models = ["springs", "springs"]
+
 fig, ax = plt.subplots(1,2, sharey=True)
-z1, F1, strain1, u1 = slider_wrapper(pile_length, alpha, model="springs")
-z2, F2, strain2, u2 = slider_wrapper(pile_length, alpha, model="springs_stable")
-line11, = ax[0].plot(F1, z1, lw=2, label="Springs")
-line12, = ax[0].plot(F2, z2, lw=2, label="Springs Stable", linestyle="--")
-line21, = ax[1].plot(u1, z1, lw=2, label="Springs")
-line22, = ax[1].plot(u2, z2, lw=2, label="Springs Stable", linestyle="--")
+z1, F1, strain1, u1 = slider_wrapper(pile_length, alpha, model=models[0])
+z2, F2, strain2, u2 = slider_wrapper(pile_length, alpha, model=models[1])
+line11, = ax[0].plot(F1, z1, lw=2, label=models[0])
+line12, = ax[0].plot(F2, z2, lw=2, label=models[1], linestyle="--")
+line21, = ax[1].plot(u1, z1, lw=2, label=models[0])
+line22, = ax[1].plot(u2, z2, lw=2, label=models[1], linestyle="--")
 ax[0].set_ylabel('Depth z')
 ax[0].invert_yaxis()
 ax[0].set_xlabel('Force F')
@@ -69,8 +67,8 @@ alpha_slider = Slider(
 
 # The function to be called anytime a slider's value changes
 def update(val):
-    z1, F1, _, u1 = slider_wrapper(len_slider.val, alpha_slider.val, model="springs")
-    z2, F2, _, u2 = slider_wrapper(len_slider.val, alpha_slider.val, model="springs_stable")
+    z1, F1, _, u1 = slider_wrapper(len_slider.val, alpha_slider.val, model=models[0])
+    z2, F2, _, u2 = slider_wrapper(len_slider.val, alpha_slider.val, model=models[1])
     line11.set_xdata(F1)
     line11.set_ydata(z1)
     line12.set_xdata(F2)

@@ -8,7 +8,8 @@ def solve_stable(system, P, N=100, tol=1e-8):
     dz = system.p.L / (N-1) # length of one element
 
     # Define intermediate constants
-    Q_ult = system.s.N_c * (system.s.s_u0 + system.s.rho * system.p.L) # ultimate end bearing pressure
+    # Q_ult = system.s.N_c * (system.s.s_u0 + system.s.rho * system.p.L) # WRONG ultimate end bearing pressure
+    Q_ult = np.pi * system.p.A * (system.s.gamma * system.p.L + system.s.N_c * (system.s.s_u0 + system.s.rho * system.p.L)) # ultimate end bearing pressure
     k = 2 * system.p.A * system.p.E / dz
 
     # Non-dimensionalise initial guess
@@ -48,51 +49,3 @@ def solve_stable(system, P, N=100, tol=1e-8):
     # TODO: as a sanity check, implement comparison of u from e1 and e2 :)
 
     return z, F, strain, u
-
-# def solve(system, P, N=100, tol=1e-8):
-#     z = np.linspace(0, system.p.L, N)
-#     z_midpoints = 0.5 * (z[:-1] + z[1:])
-#     dz = system.p.L / (N-1) # length of one element
-
-#     # Create initial guess using soil limit model [ERROR PRONE]
-#     # soil_failure_F = system.soil_limit_model(z)
-#     # soil_failure_F *= (P / soil_failure_F[0])
-#     # strain_guess = - soil_failure_F / (system.p.A*system.p.E)
-#     # strain_top = -P/(system.p.A*system.p.E)
-#     # disp_guess = np.cumsum(strain_guess * dz)
-#     # disp_guess -= disp_guess[-1]
-#     # mu_guess = disp_guess[:-1]
-    
-#     # Initial guess of zero
-#     mu_guess = np.zeros_like(z_midpoints)
-
-#     tau_ult = lambda z: system.s.alpha * (system.s.s_u0 + system.s.rho*z) # ultimate skin friction
-#     Q_ult = system.s.N_c * (system.s.s_u0 + system.s.rho * system.p.L) # ultimate end bearing pressure
-#     k = 2 * system.p.A * system.p.E / dz
-#     # print(f"k: {k}")
-
-#     def f_simultaneous(mu):
-#         # get LHS of simultaneous equations
-#         shear = system.p.C * dz * tau_ult(z_midpoints) * system.g(mu)
-#         force_lhs = P - np.cumsum(shear)
-
-#         # get RHS of simultaneous equations
-#         b = 0.5 * k * (mu[:-1] - mu[1:])
-#         c = scipy.optimize.fsolve(
-#             lambda disp_N : k * (mu[-1] - disp_N) - Q_ult * system.h(disp_N), # solve this
-#             mu[-1] # starting guess
-#         )
-#         force_rhs = np.append(b, Q_ult * system.h(c))
-
-#         # returns vector size N-1 = size(mu)
-#         return force_lhs - force_rhs
-    
-#     mu = scipy.optimize.fsolve(f_simultaneous, mu_guess, xtol=tol)
-#     shear = system.p.C * dz * tau_ult(z_midpoints) * system.g(mu)
-#     a = np.cumsum(np.insert(shear, 0, 0))
-#     F = P - a
-#     strain = F / (system.p.A * system.p.E)
-#     u = np.insert(mu - F[1:] / k, 0, mu[0] + P / k)
-#     # TODO: as a sanity check, implement comparison of u from e1 and e2 :)
-
-#     return z, F, strain, u
