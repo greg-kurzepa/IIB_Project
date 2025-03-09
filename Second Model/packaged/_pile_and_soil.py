@@ -1,6 +1,5 @@
 import numpy as np
-
-m_to_in = 39.3701
+import scipy
 
 class Pile:
     def __init__(self, R, L, W, E):
@@ -12,51 +11,33 @@ class Pile:
         self.C = 2*np.pi*self.R
         self.E = E
 
+class SoilLayer:
+    # a set of parameters and priors I have used before is
+    # alpha=0.4, gamma=20e3, N_c=9, s_u0=30e3, rho=4.8e3, sigma_n=5e3, base_depth=pile.L
+
+    def __init__(self, alpha, gamma, N_c, s_u0, rho, base_depth):
+        self.alpha = alpha              # shear utilisation, typically 0.3-0.8
+        self.gamma = gamma              # unit weight of soil, typically 20-22 kn/m3 for London Clay
+        self.N_c = N_c                  # bearing utlisation, typically 9
+        self.s_u0 = s_u0                # surface undrained shear strength
+        self.rho = rho                  # rate of increase of s_u with depth
+        self.base_depth = base_depth    # depth at which this layer ends and another begins
+
 class Soil:
-    def __init__(self, alpha=0.4, gamma=20e3, N_c=9, s_u0=30e3, rho=4.8e3, sigma_n=5e3):
-        self.alpha = alpha
-        self.gamma = gamma
-        self.N_c = N_c
-        self.s_u0 = s_u0
-        self.rho = rho
-        self.sigma_n = sigma_n
+    """It stores the layers in the soil from top to bottom."""
+    def __init__(self, layers=None):
+        if layers is not None:
+            self.layers = layers
+        else:
+            self.layers = []
 
-class System:
-    def __init__(self, pile, soil):
-        self.p = pile
-        self.s = soil
+    def add_layer(self, layer):
+        self.layers.append(layer)
 
-    def soil_limit_model(self, z):
-        # base bearing load
-        BEARING = np.pi * self.p.R**2 * ( self.s.gamma*self.p.L + self.s.N_c*( self.s.s_u0 + self.s.rho*self.p.L ) )
-
-        # total vertical shear force below z
-        SHEAR = 2*np.pi*self.p.R*self.s.alpha * ( 0.5*self.s.rho*( self.p.L**2 - z**2 ) + self.s.s_u0*( self.p.L - z ) )
-
-        # total pile weight below z
-        W_FRAC = self.p.W * (1 - z/self.p.L)
-
-        # vertical force in steel at that point
-        F = BEARING + SHEAR - W_FRAC
-        if max(W_FRAC / (BEARING+SHEAR)) > 0.05: print("Warning: W_FRAC is a significant proportion of the total force.")
-        return F
-    
-    def g(self, disp):
-        disp_over_D = disp / self.p.D
-        
-        # values to interpolate from
-        z_over_D = np.array([0, 0.0016, 0.0031, 0.0057, 0.0080, 0.0100, 0.0200, np.inf]) / m_to_in
-        tau_over_tau_ult = np.array([0, 0.3, 0.5, 0.75, 0.9, 1, 0.9, 0.9])
-
-        # return np.interp(disp_over_D, z_over_D, tau_over_tau_ult)
-        return np.sign(disp_over_D)*np.interp(np.abs(disp_over_D), z_over_D, tau_over_tau_ult)
-
-    def h(self, disp):
-        disp_over_D = disp / self.p.D
-
-        # values to interpolate from
-        z_over_D = np.array([-np.inf, 0, 0.002, 0.013, 0.042, 0.073, 0.1, np.inf]) / m_to_in
-        Q_over_Q_ult = np.array([0, 0, 0.25, 0.5, 0.75, 0.9, 1, 1])
-
-        # return np.interp(disp_over_D, z_over_D, Q_over_Q_ult)
-        return disp_over_D*np.interp(disp_over_D, z_over_D, Q_over_Q_ult)
+    def find_layer_id_at_depth(self, z):
+        # accounts for the case when one layer might have no depth, i.e. two layers at the same coordinate. in this case ignore the layer that has no depth.
+        for i, layer in enumerate(self.layers):
+            if z < layer.base_depth:
+                return i
+            
+        raise ValueError(f"the passed z, {z} is deeper than the base depth of the deepest layer, {self.layers[-1].base_depth}.")
