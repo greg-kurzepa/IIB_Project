@@ -77,6 +77,102 @@ def f_simultaneous_elastic(x, dz, N, pile, E_soil, P):
 
         return np.concatenate((zeros_1, zeros_2))
 
+def solve_springs3(pile, soil, P, z_w, N=100, tol=1e-8, t_res_clay=0.9,
+                   tau_over_tau_ult_func = None, Q_over_Q_ult_func = None):
+    """Implementation of RSPile axially loaded 1D FEM pile/soil stress/strain model using spring discretisation.
+    tau_ult and q_ult calculations for sands and clays are taken from API2GEO 2011 (Reading 8.2).
+    https://static.rocscience.cloud/assets/verification-and-theory/RSPile/RSPile-Axially-Loaded-Piles-Theory.pdf 
+
+    Here I use a different set of equilibrium equations (more general) compared to solve_springs3, so that:
+    - I can have an arbitrary stress-strain relationship for the concrete elements (used to be uniformly elastic)
+    - I can have an arbitrary pile cross-sectional alrea profile with depth (used to be constant)
+
+    Args:
+        pile (_pile_and_soil.Pile): the pile object
+        soil (_pile_and_soil.Soil): the soil object containing the soil layers
+        P (float): the axial load at the top of the pile
+        z_w (float): the water table depth
+        N (int, optional): the number of nodes along the pile. Defaults to 100.
+        tol (float, optional): the tolerance for the solver. Defaults to 1e-8.
+    """
+
+    # Create coordinate system
+    z = np.linspace(0, pile.L, N)
+    z_midpoints = 0.5 * (z[:-1] + z[1:]) # coordinates of soil element nodes
+    dz = pile.L / (N-1) # length of one element
+    dz_halfel = 0.5 * dz # half the length of one element
+    
+    # For each soil node, get the soil layer and soil type it is in
+    layer_ids = np.array([soil.find_layer_id_at_depth(z_i) for z_i in z_midpoints])
+    layer_types = np.array([soil.layers[layer_ids[i]].layer_type for i in range(N-1)])
+
+    # generate effective vertical stress profile with depth
+    eff_stress_increments = np.array([
+        soil.layers[layer_ids[i]].gamma_d * dz if z_midpoints[i] <= z_w else
+        (soil.layers[layer_ids[i]].gamma_sat - gamma_w) * dz
+    for i in range(N-1)])
+    eff_stress = np.cumsum(eff_stress_increments)
+
+    # generate tau_ult profile with depth
+    tau_ult = np.array([soil.layers[layer_ids[i]].tau_ult(eff_stress[i]) for i in range(N-1)])
+
+    # pile cross-sectional area profile with depth (uniform for now)
+    A = np.full(N, pile.A)
+
+    # get end bearing capacity
+    Q_ult = A[-1] * soil.layers[-1].q_ult(eff_stress[-1])
+
+    # allows for custom constitutive functions for the soil, e.g. purely elastic for testing against Pulous results
+    # this is the default, which conforms to API2GEO
+    if tau_over_tau_ult_func is None:
+        tau_over_tau_ult_func = lambda u, strain : np.where(layer_types == "clay", tau_over_tau_ult_clay(u / pile.D, t_res=t_res_clay), tau_over_tau_ult_sand(u / pile.D))
+    if Q_over_Q_ult_func is None:
+        Q_over_Q_ult_func = lambda d_tip, strain_tip : Q_over_Q_ult(d_tip / pile.D)
+
+    # initial guesses
+    # u is displacement of an element midpoints, d is displacement at nodes (i.e. element edges)
+    u_initial = np.zeros_like(z_midpoints)
+    d_initial = np.zeros_like(z_midpoints) # d for a element N is the displacement at the bottom of the element, i.e. the pile head displacement is not included
+    initial = np.concatenate((u_initial, d_initial))
+
+    def f_simultaneous(x):
+        u = x[:N-1]
+        d = x[N-1:]
+        strain = (u - d) / dz_halfel
+        
+        F_bottom = A[1:] * pile.stress_from_strain(strain)
+
+        F_top_excluding_tip = A[1:-1] * pile.stress_from_strain((d[:-1] - u[1:]) / dz_halfel)
+        F_tip = Q_ult * Q_over_Q_ult_func(d[-1], strain[-1])
+        F_top = np.append(F_top_excluding_tip, F_tip)
+
+        S = pile.C * dz * tau_ult * tau_over_tau_ult_func(u, strain)
+
+        zeros_1 = F_bottom - F_top
+        zeros_2 = F_top + S - np.insert(F_top[:-1], 0, P)
+
+        return np.concatenate((zeros_1, zeros_2))
+    
+    res = scipy.optimize.fsolve(f_simultaneous, initial, xtol=tol, full_output=True, maxfev=1000*(N+1))
+    if res[2] != 1: print(f"WARNING: Solver did not converge with mesg: {res[3]}")
+
+    u = res[0][:N-1]
+    d_excluding_head = res[0][N-1:]
+    strain_head = pile.strain_from_stress_pick_lowest(P / A[0])
+    d_head = strain_head * dz_halfel + u[0]
+    d = np.insert(d_excluding_head, 0, d_head)
+
+    strain_excluding_tip = (d[:-1] - u) / dz_halfel
+    strain_tip = (u[-1] - d[-1]) / dz_halfel
+    strain = np.append(strain_excluding_tip, strain_tip)
+
+    shear = pile.C * dz * tau_ult * tau_over_tau_ult_func(u, strain[1:])
+    cumulative_shear_from_top = np.cumsum(np.insert(shear, 0, 0))
+    F = P - cumulative_shear_from_top
+    # F2 = A * pile.stress_from_strain(strain) # sanity check, should equal F (it did)
+
+    return F, strain, d, res[0][:N-1], res[0][N-1:]
+
 def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
                    tau_over_tau_ult_func = None, Q_over_Q_ult_func = None,
                    tol=1e-8, outtol=1e-3):

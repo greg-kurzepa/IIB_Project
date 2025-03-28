@@ -60,11 +60,11 @@ def solve_springs_jax(pile, soil, P, N=100, tol=1e-8):
     # chatgpt suggested interpolating soil parameters for the two nodes around a boundary. could try that if this causes problems
     boundary_indexes = jnp.round(soil[:, BASE_DEPTH_IDX]*(N-1)/pile[PILE_L_IDX]).astype(int) # array of index locations of each boundary layer
     boundary_repeats = jnp.diff(boundary_indexes, prepend=0) # array of number of indices each layer fills
-    alpha = jnp.repeat(soil[:, ALPHA_IDX], boundary_repeats)
-    gamma = jnp.repeat(soil[:, GAMMA_IDX], boundary_repeats)
-    N_c = jnp.repeat(soil[:, N_C_IDX], boundary_repeats)
-    s_u0 = jnp.repeat(soil[:, S_U0_IDX], boundary_repeats)
-    rho = jnp.repeat(soil[:, RHO_IDX], boundary_repeats)
+    alpha = jnp.repeat(soil[:, ALPHA_IDX], boundary_repeats, total_repeat_length=N-1)
+    gamma = jnp.repeat(soil[:, GAMMA_IDX], boundary_repeats, total_repeat_length=N-1)
+    N_c = jnp.repeat(soil[:, N_C_IDX], boundary_repeats, total_repeat_length=N-1)
+    s_u0 = jnp.repeat(soil[:, S_U0_IDX], boundary_repeats, total_repeat_length=N-1)
+    rho = jnp.repeat(soil[:, RHO_IDX], boundary_repeats, total_repeat_length=N-1)
 
     # Define ultimate skin friction and undrained shear strength with depth
     weight_profile = jnp.cumsum(rho * dz)
@@ -85,12 +85,12 @@ def solve_springs_jax(pile, soil, P, N=100, tol=1e-8):
         # get RHS of simultaneous equations
         disp_diff = u[:-1] - u[1:]
 
-        # d_N = jax.scipy.optimize.minimize(
-        #     lambda d_N : jnp.abs( k*(u[-1] - d_N) - Q_ult * Q_over_Q_ult(d_N / D) )[0],
-        #     jnp.array([u[-1]]), # starting guess
-        #     method="BFGS"
-        # ).fun
-        d_N = 0
+        d_N = jax.scipy.optimize.minimize(
+            lambda d_N : jnp.abs( k*(u[-1] - d_N) - Q_ult * Q_over_Q_ult(d_N / D) )[0],
+            jnp.array([u[-1]]), # starting guess
+            method="BFGS"
+        ).fun
+        # d_N = 0
         # print(type(k / (2*P) * disp_diff))
         # print(type(k), type(P), type(u[-1]), type(d_N))
         # print(u[-1], d_N)
@@ -100,7 +100,7 @@ def solve_springs_jax(pile, soil, P, N=100, tol=1e-8):
         # returns (sum of) vector size N-1 = size(mu)
         return jnp.sum(jnp.abs(lhs - rhs)) # abs to make it always positive; we want to find the roots using the minimize function
     
-    u = jax.scipy.optimize.minimize(f_simultaneous, u_guess, tol=tol, method="BFGS")
+    u = jax.scipy.optimize.minimize(f_simultaneous, u_guess, tol=tol, method="BFGS").fun
     tau_ult = alpha * s_u # ultimate skin friction
     shear = C * dz * tau_ult * tau_over_tau_ult(u / D)
     cumulative_shear_from_base = jnp.cumsum(jnp.insert(shear, 0, 0))

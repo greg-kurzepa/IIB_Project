@@ -1,3 +1,4 @@
+#%%
 import numpy as np
 import pymc as pm
 import pandas as pd
@@ -21,19 +22,18 @@ priors = {
 }
 
 # Pile
-pile = _pile_and_soil.Pile(R=0.15, L=15, W=2.275e3, E=20e9)
+pile = _pile_and_soil.Pile(R=0.3, L=30, W=2.275e3, E=20e9)
 # p = _pile_and_soil.Pile(0.15, 10, 2275, E=20e9) # https://ukrstarline.ua/en/reinforced-concrete-products/reinforced-concrete-pile-driven/reinforced-concrete-pile-driven-c-10030-10
 
 # Soil
 # in this test, there are two soil layers. each has its own uniform set of ground truth parameters
-layer1 = _pile_and_soil.SoilLayer(alpha=0.4, gamma=20e3, N_c=9, s_u0=40e3, rho=3.9e3, base_depth=pile.L)
-# layer2 = _pile_and_soil.SoilLayer(alpha=0.7, gamma=20e3, N_c=9, s_u0=58e3, rho=5.5e3, base_depth=pile.L)
-# soil = _pile_and_soil.Soil([layer1, layer2])
-soil = _pile_and_soil.Soil([layer1])
+layer1 = _pile_and_soil.SandLayer(gamma_d=15e3, gamma_sat=19e3, N_q=8, beta=0.214, shaft_friction_limit=47.8e3, end_bearing_limit=1.9e6, base_depth=12.5)
+layer2 = _pile_and_soil.SandLayer(gamma_d=17e3, gamma_sat=20e3, N_q=40, beta=0.46, shaft_friction_limit=96e3, end_bearing_limit=10e6, base_depth=30)
+soil = _pile_and_soil.Soil([layer1, layer2])
 N_L = len(soil.layers) # number of layers
 
 # Define the other variables (loading, number of elements, model noise variance)
-P = 200e3 # top axial load
+P = 1.8e6 # top axial load
 N = 100 # number of nodes along pile
 sigma_n = 10e3 # currently the noise variance is additive, i.e. the +- (a set value) instead of a precentage of the measurement. should change this when I know better
 z = np.linspace(0, pile.L, N)
@@ -50,16 +50,22 @@ z = np.linspace(0, pile.L, N)
 # plt.show()
 
 # # plot the ground truth profile of force and displacement vs depth
-F, strain, u = _model_springs.solve_springs(pile, soil, z, P, N)
-# # F2, strain2, u2 = _model_springs.solve_springs(pile, soil2, z, P, N)
-# plt.plot(F, z, label="1")
-# # plt.plot(F2, z, label="2")
-# plt.gca().invert_yaxis()
-# plt.xlabel("F")
-# plt.ylabel("z")
-# plt.legend()
-# plt.grid()
-# plt.show()
+# F, strain, u = _model_springs.solve_springs2(pile, soil, P, 3, N)
+# F2, strain2, u2 = _model_springs.solve_springs(pile, soil2, z, P, N)
+# plt.plot(_model_springs.solve_springs2(pile, soil, P, 0, N)[0], z, label="1")
+plt.plot(_model_springs.solve_springs2(pile, soil, P, 3, N)[0], z, label="2")
+# plt.plot(F2, z, label="2")
+plt.xlim(left=0, right=2e6)
+plt.gca().invert_yaxis()
+plt.xlabel("F")
+plt.ylabel("z")
+plt.legend()
+plt.grid()
+plt.show()
+
+# debugging/veryifying steps:
+# - compare bearing limit to actual bearing, and compare shear limits to actual shears
+# - 
 
 # CHECK AGAINST RSPILE TUTORIAL: https://www.youtube.com/watch?v=iOsDRqHUbA8 or try to find another one where we can see the values!
 
