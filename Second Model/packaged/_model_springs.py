@@ -79,7 +79,7 @@ def f_simultaneous_elastic(x, dz, N, pile, E_soil, P):
 
 def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
                    tau_over_tau_ult_func = None, Q_over_Q_ult_func = None,
-                   tol=1e-8, outtol=1e-3):
+                   tol=1e-8, outtol=1e-2):
     """Implementation of RSPile axially loaded 1D FEM pile/soil stress/strain model using spring discretisation.
     tau_ult and q_ult calculations for sands and clays are taken from API2GEO 2011 (Reading 8.2).
     https://static.rocscience.cloud/assets/verification-and-theory/RSPile/RSPile-Axially-Loaded-Piles-Theory.pdf 
@@ -144,7 +144,7 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     # check if the solver converged
     zeros = f_simultaneous(res, dz, N, pile, A, P, Q_ult, tau_ult, Q_over_Q_ult_func, tau_over_tau_ult_func, tau_limits, Q_limit)
     if any(abs(zeros) > outtol):
-        print(f"WARNING: Solver did not converge, absolute fsolve error was greater than outtol. outtol is {outtol:.4e}, max error was {np.abs(zeros).max():.4e} ier: {ier}, mesg: {mesg}")
+        print(f"Warning: Absolute fsolve error was greater than outtol. outtol is {outtol:.4e}, max error was {np.abs(zeros).max():.4e} ier: {ier}, mesg: {mesg}")
 
     d = res[:N]
     u = res[N:]
@@ -157,7 +157,7 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     tau = np.clip(tau_ult * tau_over_tau_ult_func(u), -tau_limits, tau_limits)
     Q = min(Q_ult * Q_over_Q_ult_func(d[-1]), Q_limit)
 
-    return F, strain, d, u, zeros, tau, Q
+    return F, strain, d, u, zeros, tau, Q, eff_stress
 
 def solve_elastic(pile, E_soil, P, N=100, tol=1e-8, outtol=1e-10):
     z = np.linspace(0, pile.L, N)

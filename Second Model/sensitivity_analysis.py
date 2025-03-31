@@ -37,19 +37,19 @@ soil = _pile_and_soil.Soil([layer1, layer2])
 res0 = _model_springs.solve_springs4(pile, soil, P, 3, N)
 
 # Vary the parameter upwards
-layer1.gamma_d *= vary_factor
-layer2.gamma_d *= vary_factor
+layer1.e *= vary_factor
+layer2.e *= vary_factor
 res1 = _model_springs.solve_springs4(pile, soil, P, 3, N)
 
 # Vary the parameter downwards
-layer1.gamma_d /= vary_factor**2
-layer2.gamma_d /= vary_factor**2
+layer1.e /= vary_factor**2
+layer2.e /= vary_factor**2
 res2 = _model_springs.solve_springs4(pile, soil, P, 3, N)
 
 #%% --------------------------------------------------------------------------------------------
 # Plot the results
 
-plt.title("gamma_d")
+plt.title("e")
 plt.plot(res0[0], z, label="Original", linewidth=2)
 plt.plot(res1[0], z, label="Increase by 10%", linestyle="--")
 plt.plot(res2[0], z, label="Decrease by 10%", linestyle="--")
