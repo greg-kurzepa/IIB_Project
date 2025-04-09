@@ -13,14 +13,17 @@ def smooth_abs(x, epsilon=1e-6):
 def minimise_f(params, l2reg, roots):
     f = params - roots
     return jnp.sum(smooth_abs(f))
-def minimise_f_root(params, l2reg, roots):
-    return params - roots
+def minimise_f_root(params, l2reg, multiplier, roots):
+    return params - multiplier*roots
 
 def solve_system(roots):
     init_params = jnp.array([0.0, 0.0])
     # solver = jaxopt.LBFGS(fun=minimise_f, maxiter=500, implicit_diff=True)
-    solver = jaxopt.Broyden(fun=minimise_f_root, maxiter=500, implicit_diff=True)
-    params, state = solver.run(init_params=init_params, l2reg=None, roots=roots)
+    # solver = jaxopt.Broyden(fun=minimise_f_root, maxiter=500, implicit_diff=True)
+    # params, state = solver.run(init_params=init_params, l2reg=None, multiplier=1.0, roots=roots)
+
+    solver = jaxopt.ScipyRootFinding(optimality_fun=minimise_f_root, method="hybr")
+    params, state = solver.run(init_params=init_params, l2reg=None, multiplier=1.0, roots=roots)
 
     return 1*params[0] + 5*params[1]
 

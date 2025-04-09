@@ -7,7 +7,7 @@ import jax.scipy.optimize as opt
 def f_repeat(depths, params):
     N=100
     x = jnp.linspace(0, L, N)
-    idxs = jnp.array(N * depths / L, dtype=jnp.int32)
+    idxs = jnp.round(jnp.array(N * depths / L)).astype(jnp.int32)
     idxs = jnp.diff(idxs, prepend=0)
 
     r = jnp.repeat(params, idxs, total_repeat_length=N)

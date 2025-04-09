@@ -10,12 +10,20 @@ import packaged._model_springs as _model_springs
 def f_analytic(z, P, pile, lambda_k, Omega,):
     return P / (pile.E * pile.A * lambda_k) * (((1 + Omega*np.tanh(lambda_k*pile.L))/(Omega+np.tanh(lambda_k*pile.L)))*np.cosh(lambda_k*z) - np.sinh(lambda_k*z))
 
+# N = 100
+# L_over_D_arr = np.logspace(1,2,10)
+# D = 1
+# E_pile = 100
+# E_soil = 1
+# P = 1
+# Kb = 0 # spring stiffness at the bottom
+
 N = 100
 L_over_D_arr = np.logspace(1,2,10)
-D = 1
-E_pile = 100
-E_soil = 1
-P = 1
+D = 0.6
+E_pile = 35e9
+E_soil = E_pile/100
+P = 1.8e6
 Kb = 0 # spring stiffness at the bottom
 
 class ElasticSoil:
@@ -39,9 +47,11 @@ f_Q = lambda d_tip : 0
 I_analytic = []
 I_solved = []
 I_solved_springs = []
+I_solved_springs_nondim = []
 zeros_analytic = []
 zeros_solved = []
 zeros_solved_springs = []
+zeros_solved_springs_nondim = []
 for idx, L_over_D in (enumerate(L_over_D_arr)):
     pile = _pile_and_soil.Pile(R=D/2, L=D*L_over_D, E=E_pile)
     z = np.linspace(0, pile.L, N)
@@ -69,10 +79,16 @@ for idx, L_over_D in (enumerate(L_over_D_arr)):
     I_solved_springs.append(res2[2][0] * D * E_soil / P)
     zeros_solved_springs.append(res2[4])
 
+    # compute numerical linear elastic solution with non-dimensionalised Bryoden using solve_springs4 function
+    res3 = _model_springs.solve_springs4(pile, soil, P, 0, N, tau_over_tau_ult_func=f_tau, Q_over_Q_ult_func=f_Q, nondim=True, do_jaxopt=True)
+    I_solved_springs_nondim.append(res3[2][0] * D * E_soil / P)
+    zeros_solved_springs_nondim.append(res3[4])
+
 #%%
 plt.plot(L_over_D_arr, I_analytic, label="analytic", alpha=0.75)
 plt.plot(L_over_D_arr, I_solved, label="solved", alpha=0.75)
 plt.plot(L_over_D_arr, I_solved_springs, label="solved springs", linestyle="--", alpha=0.75)
+plt.plot(L_over_D_arr, I_solved_springs_nondim, label="solved springs nondim", linestyle="--", alpha=0.75)
 plt.xlabel("$L/D$")
 plt.ylabel("$I = S D E_s/P$")
 plt.xscale("log")
