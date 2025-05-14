@@ -1,0 +1,340 @@
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.003585815 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000384092 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.001067638 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _linspace for pjit in 0.032050848 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.002771378 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming round for pjit in 0.001810074 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming diff for pjit in 0.007008076 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.004876852 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _roll_static for pjit in 0.001367092 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming cumsum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming cumsum for pjit in 0.000754595 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.003974199 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.004107952 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _take for pjit in 0.020668983 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _take for pjit in 0.006692171 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less_equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _power for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater_equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming cumsum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.003788233 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_sum for pjit in 0.002300978 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.002091646 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000652552 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater_equal for pjit in 0.002576351 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.002683401 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.002014637 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.001501322 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.008023977 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming searchsorted for pjit in 0.050834894 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming maximum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.001579762 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming clip for pjit in 0.006389618 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less_equal for pjit in 0.002285957 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.001896381 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.002012730 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _interp for pjit in 0.112624168 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.002014399 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming append for pjit in 0.007017374 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _moveaxis for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.002017498 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.002008915 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.005031824 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming maximum for pjit in 0.002010584 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming clip for pjit in 0.006035805 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming argsort for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming cumsum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming maximum for pjit in 0.001410484 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming clip for pjit in 0.003426552 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming cumsum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming not_equal for pjit in 0.003616571 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming not_equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming logical_and for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.004578829 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.006330013 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming floor_divide for pjit in 0.029860973 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.005627871 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming remainder for pjit in 0.017822742 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.003046513 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _squeeze for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming sign for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming absolute for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming abs for pjit in 0.004877567 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming searchsorted for pjit in 0.027839899 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming maximum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming clip for pjit in 0.007558346 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less_equal for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.004296064 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.008953571 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.012745857 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.006737471 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _interp for pjit in 0.123731613 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming negative for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming maximum for pjit in 0.000844955 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming clip for pjit in 0.008988380 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _fn for pjit in 0.559725761 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _inexact_structure_impl for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _fn for pjit in 0.142968655 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <unnamed wrapped function> for pjit in 0.381379604 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming absolute for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming abs for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_max for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming bitwise_and for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming invert for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming bitwise_and for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _fn for pjit in 0.008210659 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming subtract for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming conjugate for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming dot for pjit in 0.007304907 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming real for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000607014 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming bitwise_or for pjit in 0.001825333 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.006658316 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.002555609 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.002014160 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.006825209 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.009867668 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.002110720 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming true_divide for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming sqrt for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _fn for pjit in 0.040246248 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <unnamed wrapped function> for pjit in 0.019382954 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming ravel for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <unnamed wrapped function> for pjit in 0.006034374 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.002014637 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.002016783 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _inexact_structure_impl for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming qr for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming conjugate for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming matmul for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _solve_triangular for pjit in 0.000845909 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming isfinite for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming invert for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.011672020 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.004545212 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming convert_element_type for pjit in 0.002237320 sec
+DEBUG:jax._src.xla_bridge:No jax_plugins namespace packages available
+DEBUG:jax._src.xla_bridge:Initializing backend 'cpu'
+DEBUG:jax._src.xla_bridge:Backend 'cpu' initialized
+DEBUG:jax._src.xla_bridge:Initializing backend 'tpu'
+INFO:jax._src.xla_bridge:Unable to initialize backend 'tpu': UNIMPLEMENTED: LoadPjrtPlugin is not implemented on windows yet.
+DEBUG:jax._src.interpreters.pxla:Compiling convert_element_type with global shapes and types [ShapedArray(bool[])]. Argument mapping: (UnspecifiedValue,).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(convert_element_type) in 0.105533600 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 79b77a1da2cb4af9ce1d7800734119167989967fc1b69fb442cd7092141f8ab4
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 79b77a1da2cb4af9ce1d7800734119167989967fc1b69fb442cd7092141f8ab4
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 29ef1be9a3a40608ee71e155eb871ca34630e23beee9af29441aba9d0ea76d54
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: af6f3450cc1f801444248a4841d0e9d4d71da70168f150bbf4b78c7bc5c3bccb
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 206e3517a3dfca767044255cd4c5bc76fb399ddc5ddeda12ea3cd39dde1e5b1b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 206e3517a3dfca767044255cd4c5bc76fb399ddc5ddeda12ea3cd39dde1e5b1b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: 116812879e801ef46c10507c8fc867dd4b22303fc2e0ac370658addd4c59612d
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: cf7300d2c14c16c414dae349b4cf4fbe7abe6dbfa11f262664f5c7e596b1e37e
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: 940604b77c456a63fb40aae52abe902ff88f29c370ccd889bdde6d1bd4b8b0e5
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_convert_element_type' with key 'jit_convert_element_type-0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_convert_element_type' because it took < 1.00 seconds to compile (0.17s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(convert_element_type) in 0.220706701 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.002014399 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.001940012 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <unnamed wrapped function> for pjit in 0.587724686 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming linear_solve for pjit in 0.761061430 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming convert_element_type for pjit in 0.000000000 sec
+DEBUG:jax._src.interpreters.pxla:Compiling convert_element_type with global shapes and types [ShapedArray(int32[])]. Argument mapping: (UnspecifiedValue,).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(convert_element_type) in 0.006588936 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 8b288c102471b43891c5ac8e8b9f6b4e26a3d9d6ee477fe937a3b200158483a1
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 8b288c102471b43891c5ac8e8b9f6b4e26a3d9d6ee477fe937a3b200158483a1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 29ef1be9a3a40608ee71e155eb871ca34630e23beee9af29441aba9d0ea76d54
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: d93343d927917fc4d2787ed440670f2847876b926e802baa5c58a081b5fc895c
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: e7cf1d315df2dd8579cad1764df8e66212d84986fd71c8c2dbaa145bdc4eb86d
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: e7cf1d315df2dd8579cad1764df8e66212d84986fd71c8c2dbaa145bdc4eb86d
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: 116812879e801ef46c10507c8fc867dd4b22303fc2e0ac370658addd4c59612d
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: 813efdc3d8c55c5eda257a84679876881dc103244441cd50ec997a7203b10de7
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: 7b31890f48cff32da5149d9b8c6d058d33f4d339a5e07ed293e9ebe4368cecf3
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: f7ce7afbdf99b46cbf119ee4eb771edfdb512523017f89c5d175296472ac10ee
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: f7ce7afbdf99b46cbf119ee4eb771edfdb512523017f89c5d175296472ac10ee
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_convert_element_type' with key 'jit_convert_element_type-f7ce7afbdf99b46cbf119ee4eb771edfdb512523017f89c5d175296472ac10ee'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_convert_element_type' because it took < 1.00 seconds to compile (0.02s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(convert_element_type) in 0.058482885 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming negative for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.010608196 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.006309271 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming least_squares for pjit in 2.353373528 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming root_find for pjit in 2.374753714 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.002011776 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.002014160 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming isnan for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming forward_model for pjit in 2.863949299 sec
+DEBUG:jax._src.interpreters.pxla:Compiling forward_model with global shapes and types [ShapedArray(float64[100]), ShapedArray(int32[2]), ShapedArray(float64[2]), ShapedArray(float64[2]), ShapedArray(int32[2]), ShapedArray(float64[2]), ShapedArray(float64[2]), ShapedArray(float64[2]), ShapedArray(float64[2])]. Argument mapping: (UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming less for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming <lambda> for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming conjugate for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming matmul for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _solve_triangular for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming isfinite for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming invert for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.005639553 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.004027128 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming convert_element_type for pjit in 0.000000000 sec
+DEBUG:jax._src.interpreters.pxla:Compiling convert_element_type with global shapes and types [ShapedArray(bool[])]. Argument mapping: (UnspecifiedValue,).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(convert_element_type) in 0.005189180 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 79b77a1da2cb4af9ce1d7800734119167989967fc1b69fb442cd7092141f8ab4
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 79b77a1da2cb4af9ce1d7800734119167989967fc1b69fb442cd7092141f8ab4
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 29ef1be9a3a40608ee71e155eb871ca34630e23beee9af29441aba9d0ea76d54
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: af6f3450cc1f801444248a4841d0e9d4d71da70168f150bbf4b78c7bc5c3bccb
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 206e3517a3dfca767044255cd4c5bc76fb399ddc5ddeda12ea3cd39dde1e5b1b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 206e3517a3dfca767044255cd4c5bc76fb399ddc5ddeda12ea3cd39dde1e5b1b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: 116812879e801ef46c10507c8fc867dd4b22303fc2e0ac370658addd4c59612d
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: cf7300d2c14c16c414dae349b4cf4fbe7abe6dbfa11f262664f5c7e596b1e37e
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: 940604b77c456a63fb40aae52abe902ff88f29c370ccd889bdde6d1bd4b8b0e5
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_convert_element_type' with key 'jit_convert_element_type-0d533543112adecc8dfb22985c88bf521dc7a4cf063e6a915d5470a4237078f9'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_convert_element_type' because it took < 1.00 seconds to compile (0.02s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(convert_element_type) in 0.067520857 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming bitwise_and for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _broadcast_arrays for pjit in 0.000677109 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _where for pjit in 0.010503292 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_any for pjit in 0.000000000 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming equal for pjit in 0.003396749 sec
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(forward_model) in 0.635411024 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 70640a39a8fc4e0183038c931c02bd2244f2376a81fc9ac781ab3fc9a6b43f4d
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 70640a39a8fc4e0183038c931c02bd2244f2376a81fc9ac781ab3fc9a6b43f4d
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 29ef1be9a3a40608ee71e155eb871ca34630e23beee9af29441aba9d0ea76d54
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: 3ab0b3cb860eeee54c826b5b4c8d565cf10839b51dabdb78d396680b35082bfe
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 9091d5cd6f8c2f4da67c2ab8d354b78f36dd9de6576caf54cb5f68ac4eb4b232
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 9091d5cd6f8c2f4da67c2ab8d354b78f36dd9de6576caf54cb5f68ac4eb4b232
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: 61b53b81731cda8caa7a1ffbb8da293d7753df192379d366cbf233c93b31386d
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: 1aa36b1dbd362c24e12abda089b38b8fad207db7324da63b6628e8e85aca02b7
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: a113ea9056ba04dff88d2600cb5f90f0545a463b5d23e53d47ec28a91e02e49b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 9b823b9147fe1aed83324f7706bb7417d2dc1d0236ec411e343bd7dc12cf64e2
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 9b823b9147fe1aed83324f7706bb7417d2dc1d0236ec411e343bd7dc12cf64e2
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_forward_model' with key 'jit_forward_model-9b823b9147fe1aed83324f7706bb7417d2dc1d0236ec411e343bd7dc12cf64e2'
+DEBUG:jax._src.compiler:'jit_forward_model' took at least 1.00 seconds to compile (1.92s)
+DEBUG:jax._src.compilation_cache:Not writing persistent cache entry with key 'jit_forward_model-9b823b9147fe1aed83324f7706bb7417d2dc1d0236ec411e343bd7dc12cf64e2' since cache is disabled/not initialized
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(forward_model) in 1.988901377 sec
