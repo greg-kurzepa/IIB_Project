@@ -7,7 +7,7 @@ import pytensor.tensor as pt
 from pytensor.graph import Apply, Op
 from pytensor.gradient import grad_not_implemented
 
-from . import _ops_utilities
+from . import _utilities
 from . import _model_springs_jax
 
 def create_jax_ops(config):
@@ -46,10 +46,10 @@ def create_jax_ops(config):
                                                 static_argnums=config.likelihood_static_argnums)
 
     def jitted_logp_wrapper(sigma, data, *unordered_forward_params):
-        return jitted_logp(sigma, data, *_ops_utilities.reorder_params(*unordered_forward_params, config=config))
+        return jitted_logp(sigma, data, *_utilities.reorder_params(*unordered_forward_params, config=config))
 
     def jitted_logp_grad_wrapper(sigma, data, *unordered_forward_params):
-        return jitted_logp_grad(sigma, data, *_ops_utilities.reorder_params(*unordered_forward_params, config=config))
+        return jitted_logp_grad(sigma, data, *_utilities.reorder_params(*unordered_forward_params, config=config))
 
     # Define a pytensor Op for our likelihood function
     class LogLikelihood(Op):

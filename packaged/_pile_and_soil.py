@@ -4,20 +4,21 @@ import scipy
 gamma_w = 9.81e3
 
 class Pile:
-    def __init__(self, R, L, E, W=None):
+    def __init__(self, R, L, E):
         self.R = R # the outer radius of the pile
         self.D = 2*R
         self.L = L # the length of the pile
-        self.W = W # the total weight of the pile
-        self.A = np.pi*self.R**2 # FOR NOW non-hollow
+        self.A = np.pi*self.R**2 # non-hollow
         self.C = 2*np.pi*self.R
+
+        # constitutive model parameters
         self.E = E
 
     def stress_from_strain(self, strain):
         return self.E * strain
-
-    def strain_from_stress_pick_lowest(self, stress):
-        return stress / self.E
+    
+    def __repr__(self):
+        return f"Pile(R={self.R}, L={self.L}, E={self.E})"
 
 class ClayLayer:
     def __init__(self, gamma_d, e, N_c, psi, base_depth):
@@ -25,8 +26,8 @@ class ClayLayer:
         self.e = e # void ratio
         self.N_c = N_c # bearing capacity factor, should be 9 for clays
         self.psi = psi # normalised undrained shear strength (correlated with OCR, see R8.4)
-        self.shaft_friction_limit = np.inf
-        self.end_bearing_limit = np.inf
+        self.shaft_pressure_limit = np.inf
+        self.end_pressure_limit = np.inf
 
         self.base_depth = base_depth # depth at which this layer ends and another begins
 
@@ -46,15 +47,18 @@ class ClayLayer:
     def q_ult(self, eff_stress):
         s_u = self.psi * eff_stress
         return self.N_c * s_u
+    
+    def __repr__(self):
+        return f"ClayLayer(gamma_d={self.gamma_d}, e={self.e}, N_c={self.N_c}, psi={self.psi}, base_depth={self.base_depth})"
 
 class SandLayer:
-    def __init__(self, gamma_d, e, N_q, beta, shaft_friction_limit, end_bearing_limit, base_depth):
+    def __init__(self, gamma_d, e, N_q, beta, shaft_pressure_limit, end_pressure_limit, base_depth):
         self.gamma_d = gamma_d # dry unit weight
         self.e = e # void ratio
         self.N_q = N_q # bearing capacity factor
         self.beta = beta # shaft friction factor
-        self.shaft_friction_limit = shaft_friction_limit # in Pa
-        self.end_bearing_limit = end_bearing_limit # in Pa
+        self.shaft_pressure_limit = shaft_pressure_limit # in Pa
+        self.end_pressure_limit = end_pressure_limit # in Pa
 
         self.base_depth = base_depth # depth at which this layer ends and another begins
 
@@ -69,6 +73,9 @@ class SandLayer:
     
     def q_ult(self, eff_stress):
         return self.N_q * eff_stress
+    
+    def __repr__(self):
+        return f"SandLayer(gamma_d={self.gamma_d}, e={self.e}, N_q={self.N_q}, beta={self.beta}, shaft_pressure_limit={self.shaft_pressure_limit}, end_pressure_limit={self.end_pressure_limit}, base_depth={self.base_depth})"
 
 class Soil:
     """It stores the layers in the soil from top to bottom."""

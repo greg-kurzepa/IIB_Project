@@ -22,8 +22,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 from . import _pile_and_soil
-from . import _ops_utilities
+from . import _utilities
 from . import _ops_jax
+from . import _ops_scipy
 
 # This wrapper is necessary to allow pm.sample to work with multiple cores.
 # if __name__ == "__main__":
@@ -92,7 +93,7 @@ class InferenceConfig():
         - `inferred_forward_params_dict`: Inferred physical model parameters, must be selected from in inferred_model_params_dict. It specifies their prior distributions.
     """
 
-    def __init__(self, sigma: bool = 0.05e6, sand_plug_factor: float = 1.25,
+    def __init__(self, sigma: bool = 0.05e6, sand_plug_factor: float = 1.25, N_layers: int = 2,
                  fixed_forward_params_dict: dict = None,
                  inferred_forward_params_dict: dict = None,
                  inferrable_forward_params_dict: dict = None):
@@ -103,6 +104,7 @@ class InferenceConfig():
         # Sigma is only used in the log likelihood and not the forward model, so is left out of the below dictionaries
         self.sigma = sigma
 
+        self.N_layers = N_layers
         self.sand_plug_factor = sand_plug_factor
         
         # These parameters are never inferred
@@ -139,6 +141,7 @@ class InferenceConfig():
             self.inferrable_forward_params_dict = inferrable_forward_params_dict
 
         self.z = np.linspace(0, self.fixed_forward_params_dict["pile_L"], self.fixed_forward_params_dict["N"])
+        self.dz = self.z[1] - self.z[0] # length of one element
 
         # Contains the parameters to be inferred and their prior distributions
         # wrapper_fun takes mean, stdev as input and returns the parameters to input to dist
@@ -180,6 +183,27 @@ class InferenceConfig():
         # When using ground truth into the forward function (skipping the likelihood function), we use inferrable parameters.
         self.truth_arg_order = (*self.inferrable_forward_params_dict.keys(), *self.fixed_forward_params_dict.keys())
 
+# generates a sample from the forward model given the model parameters.
+def random_f(*priors, rng=None, size=None, noise=True, config=None, forward=None):
+    if forward is None or config is None:
+        raise ValueError("forward and config must be provided")
+
+    rearranged = _utilities.reorder_params(*priors, *config.fixed_forward_params_dict.values(), *config.not_inferred_forward_params_dict.values(), config=config)
+    forward_eval = forward(*rearranged)
+
+    if noise:  
+        return rng.normal(loc=forward_eval, scale=config.sigma, size=size)
+    else:
+        return forward_eval
+    
+class MadeModel():
+    def __init__(self, model: pm.Model, config: InferenceConfig, data: np.ndarray, 
+                 forward: callable = None):
+        self.model = model
+        self.config = config
+        self.data = data
+        self.forward = forward
+
 def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: InferenceConfig = None, random_seed: int = default_random_seed):
     model_type = model_type
 
@@ -193,15 +217,14 @@ def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: Inferenc
     if model_type == "jax_fsolve":
         forward, logp_op, logp_grad_op, test_out = _ops_jax.create_jax_ops(config)
     elif model_type == "scipy_fsolve":
-        raise NotImplementedError
-        # forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config)
+        forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config)
 
     # Generate ground truth data
     random_seed = random_seed
     rng = np.random.default_rng(random_seed)
 
     unordered_true_params = (*config.inferrable_forward_params_dict.values(), *config.fixed_forward_params_dict.values())
-    ordered_true_params = _ops_utilities.reorder_params(*unordered_true_params, config=config, unordered_argnames=config.truth_arg_order)
+    ordered_true_params = _utilities.reorder_params(*unordered_true_params, config=config, unordered_argnames=config.truth_arg_order)
     true_forces = np.array(forward(*ordered_true_params))
     data = config.sigma * rng.normal(size=config.fixed_forward_params_dict["N"]) + true_forces
 
@@ -217,14 +240,9 @@ def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: Inferenc
     # Test that the Ops give the right output
     test_out(config.sigma, data, np.array([15e3, 17e3]))
 
-    def wrapped_op_log_likelihood(observed, *priors):
-        return logp_op(observed, *priors)
-
-    # generates a sample from the forward model given the model parameters.
-    def random_f(*priors, rng=None, size=None):
-        rearranged = _ops_utilities.reorder_params(*priors, *config.fixed_forward_params_dict.values(), *config.not_inferred_forward_params_dict.values(), config=config)
-        forward_eval = forward(*rearranged)
-        return rng.normal(loc=forward_eval, scale=config.sigma, size=size)
+    # This is closure to create the function that PyMC will call to generate samples from the forward model
+    def random_f_wrapper(*priors, rng=None, size=None):
+        return random_f(*priors, rng=rng, size=size, noise=True, config=config, forward=forward)
 
     # Define PyMC model
     model = pm.Model()
@@ -245,7 +263,7 @@ def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: Inferenc
         # In order to do prior/posterior predictive checks, it needs the 'random' argument which allows is to generate one sample from the pdf
         # Note, observed CANNOT be none, otherwise pymc will treat the CustomDist as a prior!
         likelihood = pm.CustomDist(
-            "likelihood", *priors.values(), observed=data, logp=wrapped_op_log_likelihood, random=random_f
+            "likelihood", *priors.values(), observed=data, logp=logp_op, random=random_f_wrapper
         )
 
     # Visualise the model
@@ -255,7 +273,7 @@ def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: Inferenc
     print(f"Initial point: {initial_point}")
     print(f"Initial point logp: {model.point_logps(initial_point)}")
 
-    return model, config, data
+    return MadeModel(model, config, data, forward)
 
 def prior_predictive(model: pm.Model, idata: az.InferenceData = None, draws: int = 500, random_seed: int = default_random_seed):
 
@@ -269,7 +287,7 @@ def prior_predictive(model: pm.Model, idata: az.InferenceData = None, draws: int
     else:
         return idata_pp
 
-def sample(model: pm.Model, idata: az.InferenceData = None, inference_draws: int = 100, tune_draws: int = 100, chains: int = 4, do_plot: bool = True, random_seed: int = default_random_seed):
+def sample_posterior(model: pm.Model, idata: az.InferenceData = None, inference_draws: int = 100, tune_draws: int = 100, chains: int = 4, do_plot: bool = True, random_seed: int = default_random_seed):
     
     print(f"Sampling {inference_draws} draws with {tune_draws} tuning steps...")
     with model:
@@ -303,6 +321,37 @@ def posterior_predictive(model: pm.Model, idata: az.InferenceData = None, random
         idata.extend(idata_pp)
     else:
         return idata_pp
+
+def plot_profile(made_model: MadeModel, priors: tuple = None, ax: matplotlib.axes.Axes = None):
+    """Takes in priors_tuple (must be in the right order as the priors in the model)
+    and plots the output of the forward function without the additive noise.
+
+    If priors_tuple is not supplied, the prior(s) will be randomly sampled from the model."""
+
+    show = False
+    if ax is None:
+        figsize = (10,5)
+        fig, ax = plt.subplots(figsize=figsize)
+        show = True
+
+    if priors is None:
+        priors = tuple(pm.draw(made_model.model.free_RVs, draws=1))
+    else:
+        if type(priors) is not tuple and type(priors) is not list:
+            raise ValueError("priors must be a tuple or list")
+
+    profile = random_f(*priors, rng=None, size=None, noise=False, config=made_model.config, forward=made_model.forward)
+
+    ax.plot(made_model.config.z, profile, label=f"priors: {str(priors)}")
+    ax.set_xlabel("depth $z$")
+    ax.set_ylabel("$F(z)$")
+    ax.set_title("Deterministic Force Profile")
+    ax.set_xlim(left=0, right=made_model.config.fixed_forward_params_dict["pile_L"])
+
+    if show:
+        plt.show()
+
+    return profile
 
 def plot_idata_trace(z, idata_trace, data=None, ax=None, trace_label=None, title=None):
 
