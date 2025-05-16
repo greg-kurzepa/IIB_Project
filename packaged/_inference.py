@@ -51,6 +51,12 @@ mpl_logger.setLevel(logging.WARNING)
 
 default_random_seed = 716743
 
+# this must be the same for all solvers
+# NOTE the jax solver is out of date in this regard, so it cannot be used right now.
+forward_arg_order = ("pile_D", "pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio",
+                     "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit",
+                     "l_base_depth", "P", "z_w", "N", "t_res_clay")
+
 # Function to enable plotting functional confidence intervals, taken from pytorch examples
 def _plot_xY(x, Y, ax, label=None):
     quantiles = Y.quantile((0.025, 0.25, 0.5, 0.75, 0.975), dim=("chain", "draw")).transpose()
@@ -116,10 +122,14 @@ class InferenceConfig():
                 "z_w" : 3, # water table depth
                 "l_layer_type" : np.array([1, 1]), # 0 for clay, 1 for sand
                 "l_base_depth" : np.array([12.5, 30]), # base depth of each layer (final value is the length of the pile)
+                "t_res_clay" : 0.9,
+
                 "pile_L" : 30, # pile length
                 "pile_D" : np.full(N, 0.6), # pile diameter
-                "pile_E" : 35e9, # pile elastic modulus
-                "t_res_clay" : 0.9
+                "f_ck" : 50, # concrete compressive strength, in MPa
+                "alpha_e" : 1.0, # scaling factor for concrete elastic modulus based on type of aggregate
+                "G_F0" : 0.065, # fracture energy of concrete, in N/mm
+                "reinforcement_ratio" : 0.04, # steel area as proportion of pile area
             }
         else:
             self.fixed_forward_params_dict = fixed_forward_params_dict
@@ -165,12 +175,11 @@ class InferenceConfig():
         # The below members are solely for the purpose of dealing with this nicely. The below code is ugly but makes the rest of the code easy to understand.
 
         # forward_arg_order is the order to pass into the *forward* function
-        self.forward_arg_order = ("pile_D", "pile_L", "pile_E", "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit", "l_base_depth", "P", "z_w", "N", "t_res_clay")
         self.static_argnames = ("pile_L", "pile_E", "P", "z_w", "N", "t_res_clay")
-        self.forward_static_argnums = [self.forward_arg_order.index(x) for x in self.static_argnames]
+        self.forward_static_argnums = [forward_arg_order.index(x) for x in self.static_argnames]
 
         # likelihood_arg_order is the order to pass into the *likelihood* function
-        self.likelihood_arg_order = ("sigma", "data") + self.forward_arg_order
+        self.likelihood_arg_order = ("sigma", "data") + forward_arg_order
         self.likelihood_static_argnums = [self.likelihood_arg_order.index(x) for x in self.static_argnames]
         self.grad_argnums = [self.likelihood_arg_order.index(key) for key in self.inferred_forward_params_dict.keys()]
 

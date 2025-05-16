@@ -4,7 +4,17 @@ import scipy
 gamma_w = 9.81e3
 
 class Pile:
-    def __init__(self, R, L, E):
+    def __init__(self, R, L, f_ck=50, alpha_e=1.0, G_F0=0.065, reinforcement_ratio=0.04):
+        """_summary_
+
+        Args:
+            R (float): _description_
+            L (float): _description_
+            f_ck (float, optional): Characteristic compressive strength of concrete. See FIB 2008
+            alpha_e (float, optional): Scaling factor for elastic modulus based on type of aggregate. See FIB 2008
+            G_F0 (float, optional): Fracture energy of concrete. See FIB 2008. 0.065N/mm for riverbed gravel, 0.106N/mm for crushed basalt.
+        """
+
         self.R = R # the outer radius of the pile
         self.D = 2*R
         self.L = L # the length of the pile
@@ -12,13 +22,52 @@ class Pile:
         self.C = 2*np.pi*self.R
 
         # constitutive model parameters
-        self.E = E
+        self.steel_E = 210e9 # Pa, Young's modulus of steel
+        self.reinforcement_ratio = reinforcement_ratio # steel area as proportion of pile area
+        self.E_c0 = 20.5e3 # MPa, this value never changes
+        self.f_ck = f_ck # in MPa
+        self.alpha_e = alpha_e
+        self.G_F0 = G_F0 # in N/mm
 
-    def stress_from_strain(self, strain):
-        return self.E * strain
+        self.f_cm = self.f_ck + 8 # in MPa
+        self.E_ci = self.E_c0 * alpha_e * (self.f_cm / 10)**(1/3) # in MPa
+        self.f_ctm = 2.64 * (np.log(self.f_cm / 10) - 0.1) # in MPa
+        self.G_F = G_F0 * np.log(1 + self.f_cm / 10)
+
+        self.microcracking_strain = 0.9 * self.f_ctm / self.E_ci # strain at which stress reaches 0.9 * f_ctm
+        self.crack_strain = 0.15
+        print(f"microcracking strain: {self.microcracking_strain:.2e}")
+        assert self.microcracking_strain < self.crack_strain, "microcracking strain should be less than crack strain of 0.15"
+
+        self.w1 = self.G_F / self.f_ctm
+        self.w2 = 5 * self.G_F / self.f_ctm
+
+    def F_over_AEs(self, strain, d): # vectorised!
+        # return self.E * strain
+
+        steel_stress_over_es = strain
+
+        # using only LHS of fig. 4.7 (fib 2008)
+        concrete_stress_MPa = np.piecewise(
+            strain,
+            condlist = [
+                strain > -self.microcracking_strain,
+                (strain <= -self.microcracking_strain) & (strain > -self.crack_strain),
+                strain <= -self.crack_strain
+            ],
+            funclist = [
+                lambda strain: self.E_ci * strain,
+                lambda strain: np.interp(strain, [-self.microcracking_strain, -self.crack_strain], [-0.9*self.f_ctm, -self.f_ctm]),
+                lambda strain: 0 * strain
+            ]
+        )
+
+        concrete_stress_over_Es = concrete_stress_MPa / (self.steel_E / 1e6)
+
+        return self.reinforcement_ratio * steel_stress_over_es + (1 - self.reinforcement_ratio) * concrete_stress_over_Es
     
     def __repr__(self):
-        return f"Pile(R={self.R}, L={self.L}, E={self.E})"
+        return f"Pile(R={self.R}, L={self.L}, f_ck={self.f_ck}, alpha_e={self.alpha_e}, G_F0={self.G_F0}, reinforcement_ratio={self.reinforcement_ratio})"
 
 class ClayLayer:
     def __init__(self, gamma_d, e, N_c, psi, base_depth):

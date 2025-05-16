@@ -7,13 +7,19 @@ from pytensor.gradient import grad_not_implemented
 from . import _utilities
 from . import _model_springs
 from . import _pile_and_soil
+from . import _inference
 
 def prepare_for_scipy(*forward_params):
-        inp_keys = ("pile_D", "pile_L", "pile_E", "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit", "l_base_depth", "P", "z_w", "N", "t_res_clay")
+        inp_keys = _inference.forward_arg_order
         d = {k: v for k, v in zip(inp_keys, forward_params)}
 
         # Define the pile
-        pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2, L=d["pile_L"], E=d["pile_E"])
+        pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2,
+                                   L=d["pile_L"],
+                                   f_ck=d["f_ck"],
+                                   alpha_e=d["alpha_e"],
+                                   G_F0=d["G_F0"],
+                                   reinforcement_ratio=d["reinforcement_ratio"],)
 
         # Define the soil
         layers = []
