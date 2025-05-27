@@ -13,8 +13,8 @@ import pymc as pm
 import pytensor
 import pytensor.tensor as pt
 from pytensor.graph import Apply, Op
-import jax
-import jax.numpy as jnp
+# import jax
+# import jax.numpy as jnp
 import time
 import os
 import logging
@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 
 from . import _pile_and_soil
 from . import _utilities
-from . import _ops_jax
+# from . import _ops_jax
 from . import _ops_scipy
 
 # This wrapper is necessary to allow pm.sample to work with multiple cores.
@@ -34,7 +34,7 @@ az.style.use("arviz-darkgrid")
 
 # Jax was written primarily for neural networks, which do not need high precision.
 # Here it's used for solving a stiff ODE so 64-bit accuracy is ESSENTIAL.
-jax.config.update('jax_enable_x64', True)
+# jax.config.update('jax_enable_x64', True)
 
 # Set up logging to ease debugging
 start_time = time.strftime('%Y%m%d-%H%M%S')
@@ -46,8 +46,8 @@ mpl_logger = logging.getLogger(matplotlib.__name__)
 mpl_logger.setLevel(logging.WARNING)
 mpl_logger = logging.getLogger(graphviz.__name__)
 mpl_logger.setLevel(logging.WARNING)
-mpl_logger = logging.getLogger(jax.__name__)
-mpl_logger.setLevel(logging.WARNING)
+# mpl_logger = logging.getLogger(jax.__name__)
+# mpl_logger.setLevel(logging.WARNING)
 
 default_random_seed = 716743
 
@@ -222,7 +222,8 @@ def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: Inferen
     # Of the code below, the rest of the program will only interact with logp_op and (if it exists) logp_grad_op
     # The jax options have the grad ops, allowing HMC monte carlo, but the scipy ones do not so require Metropolis sampling
     if solver_type == "jax_fsolve":
-        forward, logp_op, logp_grad_op, test_out = _ops_jax.create_jax_ops(config)
+        pass
+        # forward, logp_op, logp_grad_op, test_out = _ops_jax.create_jax_ops(config)
     elif solver_type == "scipy_fsolve":
         forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config)
 
@@ -372,6 +373,8 @@ def plot_idata_trace(z, idata_trace, data=None, ax=None, trace_label=None, title
         ax.scatter(z, data, label="observed", alpha=0.6, zorder=100)
 
     if title is not None:
+        ax.set_title(title)
+    else:
         ax.set_title("$F(z)$, Prior predictive distribution")
 
     if ax is not None:

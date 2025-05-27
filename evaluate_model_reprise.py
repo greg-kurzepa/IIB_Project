@@ -19,7 +19,7 @@ pile_nocrack = _pile_and_soil_nocrack.Pile(R=0.3, L=30, E=pile.equivalent_compre
 print(f"{pile_nocrack.E:.4e}")
 
 # Define the other variables (loading, number of elements, model noise variance)
-P = 1.8e6 # top axial load
+P = 3.6e6 # top axial load
 N = 100 # number of nodes along pile
 z = np.linspace(0, pile.L, N)
 z_midpoints = 0.5 * (z[:-1] + z[1:])
@@ -52,11 +52,44 @@ plt.show()
 
 #%%
 
+plt.plot(z, res.d, label="1")
+plt.plot(z, res2.d, label="2", linestyle="--")
+plt.title("Displacement")
+plt.grid()
+plt.legend()
+plt.show()
+
+#%%
+
 plt.plot(z, res.strain, label="1")
 plt.plot(z, res2.strain, label="2", linestyle="--")
 plt.title("Strain")
 plt.grid()
 plt.legend()
+plt.show()
+
+#%%
+
+import pickle
+import time
+timenow = time.strftime("%Y-%m-%d_%H-%M-%S")
+with open(f"results\\SolveData_{timenow}.pkl", "wb") as f:
+    pickle.dump(res, f, pickle.HIGHEST_PROTOCOL)
+# %%
+
+import pandas as pd
+
+random_seed = 716743
+rng = np.random.default_rng(random_seed)
+
+sigma = 20e-6
+obs = res.strain + sigma * rng.normal(size=N)
+df_forces = pd.DataFrame({"z":z, "True Strain":res.strain, "Observed Strain":obs})
+df_forces.to_csv("results\\strains_B.csv")
+# %%
+
+plt.plot(z, res.strain)
+plt.scatter(z, obs, color='red', label='Observed')
 plt.show()
 
 #%%
