@@ -1,10 +1,14 @@
 import numpy as np
 import scipy
+from scipy.special import expit as special_sigmoid
 
 gamma_w = 9.81e3
 
+def sigmoid(x, k=1):
+    return special_sigmoid(k * x)
+
 class Pile:
-    def __init__(self, R, L, f_ck=50, alpha_e=1.0, G_F0=0.065, reinforcement_ratio=0.04):
+    def __init__(self, R, L, f_ck=30, alpha_e=1.0, G_F0=0.106, reinforcement_ratio=0.01):
         """_summary_
 
         Args:
@@ -22,9 +26,9 @@ class Pile:
         self.C = 2*np.pi*self.R
 
         # constitutive model parameters
-        self.steel_E = 210e9 # Pa, Young's modulus of steel
-        self.reinforcement_ratio = reinforcement_ratio # steel area as proportion of pile area
+        self.steel_E = 210e9 # in MPa, Young's modulus of steel
         self.E_c0 = 20.5e3 # MPa, this value never changes
+        self.reinforcement_ratio = reinforcement_ratio # steel area as proportion of pile area
         self.f_ck = f_ck # in MPa
         self.alpha_e = alpha_e
         self.G_F0 = G_F0 # in N/mm
@@ -34,37 +38,76 @@ class Pile:
         self.f_ctm = 2.64 * (np.log(self.f_cm / 10) - 0.1) # in MPa
         self.G_F = G_F0 * np.log(1 + self.f_cm / 10)
 
-        self.microcracking_strain = 0.9 * self.f_ctm / self.E_ci # strain at which stress reaches 0.9 * f_ctm
-        self.crack_strain = 0.15
-        print(f"microcracking strain: {self.microcracking_strain:.2e}")
-        assert self.microcracking_strain < self.crack_strain, "microcracking strain should be less than crack strain of 0.15"
+        self.microcracking_strain = - 0.9 * self.f_ctm / self.E_ci # strain at which stress reaches 0.9 * f_ctm
+        self.crack_strain = -0.00015
+        self.crush_strain = - f_ck / self.E_ci # strain at which concrete crushes
+        assert self.microcracking_strain > self.crack_strain, "crack strain of -0.0015 should be less than microcracking strain"
+
+        self.equivalent_compressive_E = (1-self.reinforcement_ratio) * 1e6*self.E_ci + self.reinforcement_ratio * self.steel_E
 
         self.w1 = self.G_F / self.f_ctm
         self.w2 = 5 * self.G_F / self.f_ctm
 
-    def F_over_AEs(self, strain, d): # vectorised!
-        # return self.E * strain
-
-        steel_stress_over_es = strain
-
+    def f_concrete_stress_MPa_tension_concrete(self, strain):
         # using only LHS of fig. 4.7 (fib 2008)
         concrete_stress_MPa = np.piecewise(
             strain,
             condlist = [
-                strain > -self.microcracking_strain,
-                (strain <= -self.microcracking_strain) & (strain > -self.crack_strain),
-                strain <= -self.crack_strain
+                # strain > self.crush_strain,
+                strain >= self.microcracking_strain,# & (strain < self.crush_strain),
+                (strain >= self.crack_strain) & (strain < self.microcracking_strain),
+                strain < self.crack_strain
             ],
             funclist = [
+                # lambda strain: self.f_ck + 0 * strain,
                 lambda strain: self.E_ci * strain,
-                lambda strain: np.interp(strain, [-self.microcracking_strain, -self.crack_strain], [-0.9*self.f_ctm, -self.f_ctm]),
+                lambda strain: np.interp(strain, [self.crack_strain, self.microcracking_strain], [-self.f_ctm, -0.9*self.f_ctm]),
                 lambda strain: 0 * strain
             ]
         )
 
-        concrete_stress_over_Es = concrete_stress_MPa / (self.steel_E / 1e6)
+        return concrete_stress_MPa
+    
+    def f_concrete_stress_MPa(self, strain):
+        # using only LHS of fig. 4.7 (fib 2008)
 
-        return self.reinforcement_ratio * steel_stress_over_es + (1 - self.reinforcement_ratio) * concrete_stress_over_Es
+        concrete_stress_MPa = np.piecewise(
+            strain,
+            condlist = [
+                strain >= 0,
+                strain < 0
+            ],
+            funclist = [
+                lambda strain: self.E_ci * strain,
+                lambda strain: 0 * strain
+            ]
+        )
+
+        return concrete_stress_MPa
+
+    def F_over_AEs(self, strain, d, do_tension_concrete=False): # vectorised!
+
+        steel_F_over_AEs = strain * self.reinforcement_ratio
+
+        if do_tension_concrete: conc_f = self.f_concrete_stress_MPa_tension_concrete
+        else: conc_f = self.f_concrete_stress_MPa
+        concrete_F_over_AEs = conc_f(strain) / (self.steel_E/1e6) * (1-self.reinforcement_ratio)
+        
+        F_over_AEs = steel_F_over_AEs + concrete_F_over_AEs
+
+        return F_over_AEs
+    
+    def F_over_Afck(self, strain, d, do_tension_concrete=False): # vectorised!
+
+        steel_F_over_Afck = self.reinforcement_ratio * (self.steel_E/1e6) / self.f_ck * strain
+            
+        if do_tension_concrete: conc_f = self.f_concrete_stress_MPa_tension_concrete
+        else: conc_f = self.f_concrete_stress_MPa
+        concrete_F_over_Afck = (1 - self.reinforcement_ratio) * conc_f(strain) / self.f_ck
+    
+        F_over_Afck = steel_F_over_Afck + concrete_F_over_Afck
+
+        return F_over_Afck
     
     def __repr__(self):
         return f"Pile(R={self.R}, L={self.L}, f_ck={self.f_ck}, alpha_e={self.alpha_e}, G_F0={self.G_F0}, reinforcement_ratio={self.reinforcement_ratio})"

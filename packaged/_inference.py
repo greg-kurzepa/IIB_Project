@@ -54,8 +54,10 @@ default_random_seed = 716743
 # this must be the same for all solvers
 # NOTE the jax solver is out of date in this regard, so it cannot be used right now.
 forward_arg_order = ("pile_D", "pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio",
-                     "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit",
-                     "l_base_depth", "P", "z_w", "N", "t_res_clay")
+                    "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit",
+                    "l_base_depth", "P", "z_w", "N", "t_res_clay")
+static_argnames = ("pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio", "P", "z_w", "N", "t_res_clay")
+forward_static_argnums = [forward_arg_order.index(x) for x in static_argnames]
 
 # Function to enable plotting functional confidence intervals, taken from pytorch examples
 def _plot_xY(x, Y, ax, label=None):
@@ -174,13 +176,9 @@ class InferenceConfig():
         # This is because jax.grad() only accepts positional arguments and writing a wrapper that takes account of the argnums argument was painful.
         # The below members are solely for the purpose of dealing with this nicely. The below code is ugly but makes the rest of the code easy to understand.
 
-        # forward_arg_order is the order to pass into the *forward* function
-        self.static_argnames = ("pile_L", "pile_E", "P", "z_w", "N", "t_res_clay")
-        self.forward_static_argnums = [forward_arg_order.index(x) for x in self.static_argnames]
-
         # likelihood_arg_order is the order to pass into the *likelihood* function
         self.likelihood_arg_order = ("sigma", "data") + forward_arg_order
-        self.likelihood_static_argnums = [self.likelihood_arg_order.index(x) for x in self.static_argnames]
+        self.likelihood_static_argnums = [self.likelihood_arg_order.index(x) for x in static_argnames]
         self.grad_argnums = [self.likelihood_arg_order.index(key) for key in self.inferred_forward_params_dict.keys()]
 
         # wrapper_arg_order is the order to pass into the *wrapped* likelihood & grad functions, excluding data, sigma which are always first
@@ -213,8 +211,8 @@ class MadeModel():
         self.data = data
         self.forward = forward
 
-def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: InferenceConfig = None, random_seed: int = default_random_seed):
-    model_type = model_type
+def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: InferenceConfig = None, random_seed: int = default_random_seed):
+    solver_type = solver_type
 
     if inference_config is None:
         config = InferenceConfig()
@@ -223,9 +221,9 @@ def make_pymc_model(model_type: str = "scipy_fsolve", inference_config: Inferenc
 
     # Of the code below, the rest of the program will only interact with logp_op and (if it exists) logp_grad_op
     # The jax options have the grad ops, allowing HMC monte carlo, but the scipy ones do not so require Metropolis sampling
-    if model_type == "jax_fsolve":
+    if solver_type == "jax_fsolve":
         forward, logp_op, logp_grad_op, test_out = _ops_jax.create_jax_ops(config)
-    elif model_type == "scipy_fsolve":
+    elif solver_type == "scipy_fsolve":
         forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config)
 
     # Generate ground truth data
@@ -330,7 +328,7 @@ def posterior_predictive(model: pm.Model, idata: az.InferenceData = None, random
         idata.extend(idata_pp)
     else:
         return idata_pp
-
+    
 def plot_profile(made_model: MadeModel, priors: tuple = None, ax: matplotlib.axes.Axes = None):
     """Takes in priors_tuple (must be in the right order as the priors in the model)
     and plots the output of the forward function without the additive noise.

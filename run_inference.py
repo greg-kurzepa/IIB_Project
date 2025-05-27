@@ -8,7 +8,7 @@ if __name__ == "__main__":
     config.fixed_forward_params_dict["P"] = 6.2e6
 
     # m1 = inference.make_pymc_model(model_type = "jax_fsolve")
-    m1 = inference.make_pymc_model(model_type = "scipy_fsolve", inference_config=config)
+    m1 = inference.make_pymc_model(solver_type = "scipy_fsolve", inference_config=config)
 
     # plot an example profile to verify the deterministic function works
     prior = np.array([15000,17000])

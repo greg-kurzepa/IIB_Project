@@ -1,0 +1,9 @@
+DEBUG:filelock:Attempting to acquire lock 2571671997760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Lock 2571671997760 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Attempting to release lock 2571671997760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Lock 2571671997760 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+INFO:pymc.sampling.forward:Sampling: [_E_soil, _Kb, likelihood]
+DEBUG:filelock:Attempting to acquire lock 2571674748784 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Lock 2571674748784 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Attempting to release lock 2571674748784 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock
+DEBUG:filelock:Lock 2571674748784 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.9-64\.lock

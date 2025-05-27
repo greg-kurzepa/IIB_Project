@@ -10,69 +10,77 @@ from . import _pile_and_soil
 from . import _inference
 
 def prepare_for_scipy(*forward_params):
-        inp_keys = _inference.forward_arg_order
-        d = {k: v for k, v in zip(inp_keys, forward_params)}
+    inp_keys = _inference.forward_arg_order
+    d = {k: v for k, v in zip(inp_keys, forward_params)}
 
-        # Define the pile
-        pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2,
-                                   L=d["pile_L"],
-                                   f_ck=d["f_ck"],
-                                   alpha_e=d["alpha_e"],
-                                   G_F0=d["G_F0"],
-                                   reinforcement_ratio=d["reinforcement_ratio"],)
+    # Define the pile
+    pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2,
+                                L=d["pile_L"],
+                                f_ck=d["f_ck"],
+                                alpha_e=d["alpha_e"],
+                                G_F0=d["G_F0"],
+                                reinforcement_ratio=d["reinforcement_ratio"],)
 
-        # Define the soil
-        layers = []
-        for i in range(len(d["l_layer_type"])):
-            if d["l_layer_type"][i] == 0: # clay
-                layers.append(_pile_and_soil.ClayLayer(
-                    gamma_d = d["l_gamma_d"][i],
-                    e = d["l_e"][i],
-                    N_c = d["l_c1"][i],
-                    psi = d["l_c2"][i],
-                    shaft_pressure_limit = d["l_shaft_pressure_limit"][i],
-                    end_pressure_limit = d["l_end_pressure_limit"][i],
-                    base_depth = d["l_base_depth"][i]
-                ))
-            elif d["l_layer_type"][i] == 1: # sand
-                layers.append(_pile_and_soil.SandLayer(
-                    gamma_d = d["l_gamma_d"][i],
-                    e = d["l_e"][i],
-                    N_q = d["l_c1"][i],
-                    beta = d["l_c2"][i],
-                    shaft_pressure_limit = d["l_shaft_pressure_limit"][i],
-                    end_pressure_limit = d["l_end_pressure_limit"][i],
-                    base_depth = d["l_base_depth"][i]
-                ))
-            else:
-                raise ValueError(f"Unknown layer id '{d["l_layer_type"][i]}' in layer {i}. Must be 0 (clay) or 1 (sand).")
-            
-        soil = _pile_and_soil.Soil(layers)
-            
-        prepared_forward_params = (pile, soil, d["P"], d["z_w"], d["N"], d["t_res_clay"])
+    # Define the soil
+    layers = []
+    for i in range(len(d["l_layer_type"])):
+        if d["l_layer_type"][i] == 0: # clay
+            layers.append(_pile_and_soil.ClayLayer(
+                gamma_d = d["l_gamma_d"][i],
+                e = d["l_e"][i],
+                N_c = d["l_c1"][i],
+                psi = d["l_c2"][i],
+                shaft_pressure_limit = d["l_shaft_pressure_limit"][i],
+                end_pressure_limit = d["l_end_pressure_limit"][i],
+                base_depth = d["l_base_depth"][i]
+            ))
+        elif d["l_layer_type"][i] == 1: # sand
+            layers.append(_pile_and_soil.SandLayer(
+                gamma_d = d["l_gamma_d"][i],
+                e = d["l_e"][i],
+                N_q = d["l_c1"][i],
+                beta = d["l_c2"][i],
+                shaft_pressure_limit = d["l_shaft_pressure_limit"][i],
+                end_pressure_limit = d["l_end_pressure_limit"][i],
+                base_depth = d["l_base_depth"][i]
+            ))
+        else:
+            raise ValueError(f"Unknown layer id '{d["l_layer_type"][i]}' in layer {i}. Must be 0 (clay) or 1 (sand).")
+        
+    soil = _pile_and_soil.Soil(layers)
 
-        return prepared_forward_params
+    # print(f"pile equiv E: {pile.equivalent_compressive_E}")
+        
+    prepared_forward_params = (pile, soil, d["P"], d["z_w"], d["N"], d["t_res_clay"])
 
-def create_scipy_ops(config):
+    return prepared_forward_params
+
+
+def create_scipy_ops(config, model_type: str = "nonlinear_cracking"):
     # Currently DOES NOT support variable pile diameter, due to pile_and_soil stuff
+    # model_type can choose from: "nonlinear_cracking", "nonlinear_asymmetric", "nonlinear", "linear"
+    # nonlinear and linear refer to the t-z curves used. Linear is a straight line and has an analytic solution.
+    # "nonlinear" has a uniform pile young's modulus, and is the same in tension and compression.
+    # "nonlinear_asymmetric" assumes the tensile strength of concrete to be zero.
+    # "nonlinear_cracking" gives the concrete some tensile strength until it cracks.
 
     def forward_model(*forward_params):
         res = _model_springs.solve_springs4(*prepare_for_scipy(*forward_params))
 
         # Check if any of "zeros" are nan, if so the result is probably wrong. (note, if all are nan it could mean P > P_ult which is expected behaviour)
         # "zeros" is the array of simultaneous equations results that should all be [almost] zero for a good solution.
-        if np.any(np.isnan(res[4])) and not np.all(np.isnan(res[4])):
+        if np.any(np.isnan(res.zeros)) and not np.all(np.isnan(res.zeros)):
             raise RuntimeError("Some of the zeros are nan, some are not. This is unexpected.")
         
         # Check that if the results is all nan, then P > P_ult (otherwise it's an error)
-        if np.all(np.isnan(res[4])):
-            if res[8] / res[9] > 1:
+        if np.all(np.isnan(res.zeros)):
+            if res.P / res.P_cap > 1:
                 # print("P > P_ult! Nans will be returned")
                 pass
             else:
                 raise RuntimeError("All zeros are nan, but P <= P_ult. This is unexpected.")
 
-        return res[0]
+        return res.F
 
     def forward_log_likelihood(sigma, data, *forward_params):
         # Assuming additive gaussian white noise

@@ -1,9 +1,12 @@
 import numpy as np
 import scipy
 import scipy.optimize
+import jax
+import jax.numpy as jnp
 
 m_to_in = 39.3701
 gamma_w = 9.81e3 # unit weight of water
+jax.config.update('jax_enable_x64', True) #ESSENTIAL
 
 def tau_over_tau_ult_clay(disp_over_D, t_res=0.9):
     # values to interpolate from
@@ -29,49 +32,27 @@ def Q_over_Q_ult(disp_over_D):
     # below works for only downwards (+ve) displacement since going up there is no resistance.
     return np.interp(disp_over_D, z_over_D, Q_over_Q_ult)
 
-def f_simultaneous_nondim(x, dz, N, pile, P_over_AEs, Q_ult_over_AEs, tau_ult_over_AEs, Q_over_Q_ult_func, tau_over_tau_ult_func, tau_limit_over_AEs, Q_limit_over_AEs, do_tension_concrete):
-    d = x[:N]
-    u = x[N:]
+def f_simultaneous_nondim(x, dz, N, pile, P_over_AEp, Q_ult_over_AEp, tau_ult_over_AEp, Q_over_Q_ult_func, tau_over_tau_ult_func, tau_limit_over_AEp, Q_limit_over_AEp):
+        d = x[:N]
+        u = x[N:]
 
-    dz_halfel = dz/2
-    strain_top = (d[:-1] - u) / dz_halfel
-    strain_bottom = (u - d[1:]) / dz_halfel
+        dz_halfel = dz/2
+        strain_top = (d[:-1] - u) / dz_halfel
+        strain_bottom = (u - d[1:]) / dz_halfel
 
-    F_over_AEs_tip = min(Q_ult_over_AEs * Q_over_Q_ult_func(d[-1]), Q_limit_over_AEs)
-    F_over_AEs_top_excluding_tip = pile.F_over_AEs(strain_top, d[:-1], do_tension_concrete=do_tension_concrete)
-    F_over_AEs_top = np.append(F_over_AEs_top_excluding_tip, F_over_AEs_tip)
-    
-    F_over_AEs_bottom_excluding_head = pile.F_over_AEs(strain_bottom, d[1:], do_tension_concrete=do_tension_concrete)
-    F_over_AEs_bottom = np.insert(F_over_AEs_bottom_excluding_head, 0, P_over_AEs)
+        F_over_AEp_tip = min(Q_ult_over_AEp * Q_over_Q_ult_func(d[-1]), Q_limit_over_AEp)
+        F_over_AEp_top_excluding_tip = strain_top
+        F_over_AEp_top = np.append(F_over_AEp_top_excluding_tip, F_over_AEp_tip)
+        
+        F_over_AEp_bottom_excluding_head = strain_bottom
+        F_over_AEp_bottom = np.insert(F_over_AEp_bottom_excluding_head, 0, P_over_AEp)
 
-    S_over_AEs = pile.C * dz * np.clip(tau_ult_over_AEs * tau_over_tau_ult_func(u), -tau_limit_over_AEs, tau_limit_over_AEs)
+        S_over_AEp = pile.C * dz * np.clip(tau_ult_over_AEp * tau_over_tau_ult_func(u), -tau_limit_over_AEp, tau_limit_over_AEp)
 
-    zeros_1 = F_over_AEs_bottom - F_over_AEs_top
-    zeros_2 = F_over_AEs_top[1:] + S_over_AEs - F_over_AEs_bottom[:-1]
+        zeros_1 = F_over_AEp_bottom - F_over_AEp_top
+        zeros_2 = F_over_AEp_top[1:] + S_over_AEp - F_over_AEp_bottom[:-1]
 
-    return np.concatenate((zeros_1, zeros_2))
-
-def f_simultaneous_nondim2(x, dz, N, pile, P_over_Afck, Q_ult_over_Afck, tau_ult_over_Afck, Q_over_Q_ult_func, tau_over_tau_ult_func, tau_limit_over_Afck, Q_limit_over_Afck, do_tension_concrete):
-    d = x[:N]
-    u = x[N:]
-
-    dz_halfel = dz/2
-    strain_top = (d[:-1] - u) / dz_halfel
-    strain_bottom = (u - d[1:]) / dz_halfel
-
-    F_over_Afck_tip = min(Q_ult_over_Afck * Q_over_Q_ult_func(d[-1]), Q_limit_over_Afck)
-    F_over_Afck_top_excluding_tip = pile.F_over_Afck(strain_top, d[:-1], do_tension_concrete=do_tension_concrete)
-    F_over_Afck_top = np.append(F_over_Afck_top_excluding_tip, F_over_Afck_tip)
-    
-    F_over_Afck_bottom_excluding_head = pile.F_over_Afck(strain_bottom, d[1:], do_tension_concrete=do_tension_concrete)
-    F_over_Afck_bottom = np.insert(F_over_Afck_bottom_excluding_head, 0, P_over_Afck)
-
-    S_over_Afck = pile.C * dz * np.clip(tau_ult_over_Afck * tau_over_tau_ult_func(u), -tau_limit_over_Afck, tau_limit_over_Afck)
-
-    zeros_1 = F_over_Afck_bottom - F_over_Afck_top
-    zeros_2 = F_over_Afck_top[1:] + S_over_Afck - F_over_Afck_bottom[:-1]
-
-    return np.concatenate((zeros_1, zeros_2))
+        return np.concatenate((zeros_1, zeros_2))
 
 class SolveData():
     def __init__(self, F, strain, d, u, zeros, tau, Q,
@@ -95,7 +76,7 @@ class SolveData():
 
 def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
                    tau_over_tau_ult_func = None, Q_over_Q_ult_func = None,
-                   tol=1e-8, outtol=None, do_Afck=False, do_tension_concrete=False):
+                   tol=1e-8, outtol=1e-2):
     """Implementation of RSPile axially loaded 1D FEM pile/soil stress/strain model using spring discretisation.
     tau_ult and q_ult calculations for sands and clays are taken from API2GEO 2011 (Reading 8.2).
     https://static.rocscience.cloud/assets/verification-and-theory/RSPile/RSPile-Axially-Loaded-Piles-Theory.pdf 
@@ -151,15 +132,9 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     # Check if ultimate soil capacity is exceeded, if so return jax.nan to mark the parameter combination as invalid
     # NOTE! clay can lose capacity with high displacement, so this check needs to be refined for clay.
     # Really I will also check if the solver fails, and ignore it if it does. I should track both types of failure and report them after inference.
-    Q_cap = np.minimum(Q_ult, Q_limit)
-    S_cap = pile.C * dz * np.minimum(tau_ult, shaft_pressure_limit)
+    Q_cap = jnp.minimum(Q_ult, Q_limit)
+    S_cap = pile.C * dz * jnp.minimum(tau_ult, shaft_pressure_limit)
     P_cap = Q_cap + S_cap.sum()
-
-    # tau_ult_mean = np.mean(tau_ult)
-    # print(f"tau_ult_mean: {tau_ult_mean:.4f}")
-    # print(f"val: {0.3*(1/0.0016)*tau_ult_mean/pile.D:.4e}")
-
-    # print(f"val: {Q_ult/pile.D * 0.025/0.002}")
 
     # allows for custom constitutive functions for the soil, e.g. purely elastic for testing against Pulous results
     # this is the default, which conforms to API2GEO
@@ -173,38 +148,20 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
         # u is displacement of an element midpoints, d is displacement at nodes (i.e. element edges)
         d_initial = np.zeros_like(z)
         u_initial = np.zeros_like(z_midpoints) # d for a element N is the displacement at the bottom of the element, i.e. the pile head displacement is not included
-        # d_initial = np.sign(P) * np.full_like(z, 0.001)
-        # u_initial = np.sign(P) * np.full_like(z_midpoints, 0.001)
         initial = np.concatenate((d_initial, u_initial))
         
-        if do_Afck:
-            nondim_args = {"dz" : dz, "N" : N, "pile" : pile, "P_over_Afck" : P/(A[0]*pile.f_ck*1e6), "Q_ult_over_Afck" : Q_ult/(A[-1]*pile.f_ck*1e6),
-                        "tau_ult_over_Afck" : tau_ult/(A_midpoints*pile.f_ck*1e6), "Q_over_Q_ult_func" : Q_over_Q_ult_func,
-                        "tau_over_tau_ult_func" : tau_over_tau_ult_func, "tau_limit_over_Afck" : shaft_pressure_limit/(A_midpoints*pile.f_ck*1e6),
-                        "Q_limit_over_Afck" : Q_limit/(A[-1]*pile.f_ck*1e6), "do_tension_concrete" : do_tension_concrete}
-            f_zeros = f_simultaneous_nondim2
-
-            if outtol is None:
-                outtol = P * 1e-3 / (A[0] * 30e6)
-        
-        else:
-            nondim_args = {"dz" : dz, "N" : N, "pile" : pile, "P_over_AEs" : P/(A[0]*pile.steel_E), "Q_ult_over_AEs" : Q_ult/(A[-1]*pile.steel_E),
-                        "tau_ult_over_AEs" : tau_ult/(A_midpoints*pile.steel_E), "Q_over_Q_ult_func" : Q_over_Q_ult_func,
-                        "tau_over_tau_ult_func" : tau_over_tau_ult_func, "tau_limit_over_AEs" : shaft_pressure_limit/(A_midpoints*pile.steel_E),
-                        "Q_limit_over_AEs" : Q_limit/(A[-1]*pile.steel_E), "do_tension_concrete" : do_tension_concrete}
-            f_zeros = f_simultaneous_nondim
-
-            if outtol is None:
-                outtol = P * 1e-3 / (A[0] * pile.steel_E)
+        nondim_args = {"dz" : dz, "N" : N, "pile" : pile, "P_over_AEp" : P/(A[0]*pile.E), "Q_ult_over_AEp" : Q_ult/(A[-1]*pile.E),
+                        "tau_ult_over_AEp" : tau_ult/(A_midpoints*pile.E), "Q_over_Q_ult_func" : Q_over_Q_ult_func,
+                        "tau_over_tau_ult_func" : tau_over_tau_ult_func, "tau_limit_over_AEp" : shaft_pressure_limit/(A_midpoints*pile.E), "Q_limit_over_AEp" : Q_limit/(A[-1]*pile.E)}
 
         # res, infodict, ier, mesg = scipy.optimize.fsolve(f_simultaneous_nondim, initial, xtol=tol, full_output=True, args=tuple(nondim_args.values()))
-        obj = scipy.optimize.root(f_zeros, initial, method="hybr", tol=tol, args=tuple(nondim_args.values()))
+        obj = scipy.optimize.root(f_simultaneous_nondim, initial, method="hybr", tol=tol, args=tuple(nondim_args.values()))
         res, ier, mesg = obj.x, obj.success, obj.message
 
-        zeros = f_zeros(res, **nondim_args)
+        zeros = f_simultaneous_nondim(res, **nondim_args)
 
         # check if the solver converged
-        if any(abs(zeros) > abs(outtol)):
+        if any(abs(zeros) > outtol):
             print(f"Warning: Absolute fsolve error was greater than outtol. outtol is {outtol:.4e}, max error was {np.abs(zeros).max():.4e} ier: {ier}, mesg: {mesg}")
 
     else:
@@ -220,9 +177,9 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     strain_tip = (u[-1] - d[-1]) / dz_halfel
     strain = np.append(strain_top, strain_tip)
 
-    F = A * pile.steel_E * pile.F_over_AEs(strain, d, do_tension_concrete=do_tension_concrete) # sanity check, should equal F (it did)
+    F = A * pile.stress_from_strain(strain) # sanity check, should equal F (it did)
     tau = np.clip(tau_ult * tau_over_tau_ult_func(u), -shaft_pressure_limit, shaft_pressure_limit)
     Q = min(Q_ult * Q_over_Q_ult_func(d[-1]), Q_limit)
 
-    return SolveData(F, strain, d, u, zeros, tau, Q, 
-                     shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap)
+    return SolveData(F, strain, d, u, zeros, tau, Q,
+                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap)

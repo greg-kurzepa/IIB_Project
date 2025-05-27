@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import scipy
 import scipy.stats
 
+from . import _inference
+
 # ---------------------------------------------------------------------------
 # Utilities for PyMC Ops
 
@@ -15,9 +17,7 @@ def reorder_params(*unordered_forward_params, config=None, unordered_argnames=No
             raise ValueError("Either config or unordered_argnames must be provided.")
         unordered_argnames = config.wrapper_arg_order
     if ordered_argnames is None:
-        if config is None:
-            raise ValueError("Either config or ordered_argnames must be provided.")
-        ordered_argnames = config.forward_arg_order
+        ordered_argnames = _inference.forward_arg_order
 
     # Reorder unordered_forward_params in the same way that unordered_argnames would be reordered to form ordered_argnames
     unordered_idx_in_ordered = [ordered_argnames.index(x) for x in unordered_argnames]
