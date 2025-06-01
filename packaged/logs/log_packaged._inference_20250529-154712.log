@@ -1,0 +1,212 @@
+DEBUG:filelock:Attempting to acquire lock 1676313703536 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676313703536 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676313703536 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676313703536 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676319918320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319918320 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676319918320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319918320 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323111952 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323111952 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323111952 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323111952 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676320290096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676320290096 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676320290096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676320290096 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323182192 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323182192 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323182192 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323182192 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323184688 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323184688 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323184688 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323184688 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323181376 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323181376 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323181376 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323181376 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323186464 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323186464 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323186464 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323186464 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676319671888 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319671888 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676319671888 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319671888 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676320290720 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676320290720 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676320290720 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676320290720 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323439584 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323439584 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323439584 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323439584 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323452832 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323452832 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323452832 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323452832 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676318775664 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676318775664 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676318775664 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676318775664 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676319709744 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319709744 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676319709744 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676319709744 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323179024 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323179024 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323179024 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323179024 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323447312 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323447312 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323447312 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323447312 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323451104 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323451104 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323451104 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323451104 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323444000 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323444000 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323444000 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323444000 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323520832 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323520832 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323520832 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323520832 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323529616 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323529616 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323529616 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323529616 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323450480 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323450480 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323450480 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323450480 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323532640 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323532640 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323532640 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323532640 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323536096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323536096 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323536096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323536096 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323595488 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323595488 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323595488 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323595488 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323531728 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323531728 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323531728 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323531728 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323599328 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323599328 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323599328 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323599328 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323601536 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323601536 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323601536 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323601536 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323588000 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323588000 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323588000 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323588000 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323593760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323593760 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323593760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323593760 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323595632 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323595632 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323595632 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323595632 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323592320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323592320 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323592320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323592320 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676323664240 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323664240 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676323664240 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676323664240 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326386096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326386096 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326386096 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326386096 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676324140432 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324140432 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676324140432 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324140432 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676324140432 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324140432 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676324140432 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324140432 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326649584 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326649584 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326649584 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326649584 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326815216 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326815216 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326815216 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326815216 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326637152 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326637152 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326637152 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326637152 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326636528 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326636528 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326636528 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326636528 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326643344 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326643344 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326643344 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326643344 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326821792 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326821792 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326821792 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326821792 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326823136 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326823136 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326823136 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326823136 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326640320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326640320 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326640320 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326640320 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676324042512 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324042512 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676324042512 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676324042512 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326638976 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326638976 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326638976 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326638976 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326826016 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326826016 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326826016 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326826016 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326829616 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326829616 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326829616 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326829616 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326647760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326647760 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326647760 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326647760 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326817664 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326817664 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326817664 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326817664 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326825488 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326825488 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326825488 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326825488 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326648720 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326648720 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326648720 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326648720 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326816176 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326816176 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326816176 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326816176 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 1676326998848 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326998848 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 1676326998848 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 1676326998848 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock

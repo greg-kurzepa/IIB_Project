@@ -1,12 +1,9 @@
 import numpy as np
 import scipy
 import scipy.optimize
-import jax
-import jax.numpy as jnp
 
 m_to_in = 39.3701
 gamma_w = 9.81e3 # unit weight of water
-jax.config.update('jax_enable_x64', True) #ESSENTIAL
 
 def tau_over_tau_ult_clay(disp_over_D, t_res=0.9):
     # values to interpolate from
@@ -56,7 +53,8 @@ def f_simultaneous_nondim(x, dz, N, pile, P_over_AEp, Q_ult_over_AEp, tau_ult_ov
 
 class SolveData():
     def __init__(self, F, strain, d, u, zeros, tau, Q,
-                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap):
+                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap,
+                 too_light, Q_cap=None, S_cap=None):
         
         self.F = F
         self.strain = strain
@@ -74,9 +72,14 @@ class SolveData():
         self.P = P
         self.P_cap = P_cap
 
+        self.too_light = too_light
+
+        self.Q_cap = Q_cap
+        self.S_cap = S_cap
+
 def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
                    tau_over_tau_ult_func = None, Q_over_Q_ult_func = None,
-                   tol=1e-8, outtol=1e-2):
+                   tol=1e-8, outtol=None):
     """Implementation of RSPile axially loaded 1D FEM pile/soil stress/strain model using spring discretisation.
     tau_ult and q_ult calculations for sands and clays are taken from API2GEO 2011 (Reading 8.2).
     https://static.rocscience.cloud/assets/verification-and-theory/RSPile/RSPile-Axially-Loaded-Piles-Theory.pdf 
@@ -116,6 +119,12 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     shaft_pressure_limit = np.array([soil.layers[layer_ids[i]].shaft_pressure_limit for i in range(N-1)])
     Q_limit = A[-1] * soil.layers[-1].end_pressure_limit
 
+    # gamma_sat cannot be less than gamma_w
+    too_light = False
+    for i in range(N-1):
+        if soil.layers[layer_ids[i]].gamma_sat < gamma_w:
+            too_light = True
+
     # generate effective vertical stress profile with depth
     eff_stress_increments = np.array([
         soil.layers[layer_ids[i]].gamma_d * dz if z_midpoints[i] <= z_w else
@@ -132,8 +141,8 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     # Check if ultimate soil capacity is exceeded, if so return jax.nan to mark the parameter combination as invalid
     # NOTE! clay can lose capacity with high displacement, so this check needs to be refined for clay.
     # Really I will also check if the solver fails, and ignore it if it does. I should track both types of failure and report them after inference.
-    Q_cap = jnp.minimum(Q_ult, Q_limit)
-    S_cap = pile.C * dz * jnp.minimum(tau_ult, shaft_pressure_limit)
+    Q_cap = np.minimum(Q_ult, Q_limit)
+    S_cap = pile.C * dz * np.minimum(tau_ult, shaft_pressure_limit)
     P_cap = Q_cap + S_cap.sum()
 
     # allows for custom constitutive functions for the soil, e.g. purely elastic for testing against Pulous results
@@ -143,7 +152,7 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     if Q_over_Q_ult_func is None:
         Q_over_Q_ult_func = lambda d_tip : Q_over_Q_ult(d_tip / pile.D)
 
-    if P <= P_cap:
+    if P <= P_cap and not too_light:
         # initial guesses
         # u is displacement of an element midpoints, d is displacement at nodes (i.e. element edges)
         d_initial = np.zeros_like(z)
@@ -160,12 +169,15 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
 
         zeros = f_simultaneous_nondim(res, **nondim_args)
 
+        if outtol is None:
+                outtol = P * 1e-3 / (A[0] * pile.E)
+
         # check if the solver converged
         if any(abs(zeros) > outtol):
             print(f"Warning: Absolute fsolve error was greater than outtol. outtol is {outtol:.4e}, max error was {np.abs(zeros).max():.4e} ier: {ier}, mesg: {mesg}")
 
     else:
-        # If the ultimate capacity is exceeded, return NaN
+        # If the ultimate capacity is exceeded or the soil is too light, return NaN
         # This allows the pymc op to treat it as zero-probability
         res = np.full(2*N-1, np.nan)
         zeros = np.full(2*N-1, np.nan)
@@ -182,4 +194,4 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     Q = min(Q_ult * Q_over_Q_ult_func(d[-1]), Q_limit)
 
     return SolveData(F, strain, d, u, zeros, tau, Q,
-                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap)
+                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap, too_light, Q_cap, S_cap)

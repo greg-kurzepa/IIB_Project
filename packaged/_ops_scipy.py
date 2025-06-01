@@ -5,27 +5,29 @@ from pytensor.graph import Apply, Op
 from pytensor.gradient import grad_not_implemented
 
 from . import _utilities
-from . import _model_springs
-from . import _pile_and_soil
+from packaged_old import _model_springs_nocrack
+from packaged_old import _pile_and_soil_nocrack
+from packaged_shooting import _model_ivp, _model_bvp
 from . import _inference
 
-def prepare_for_scipy(*forward_params):
+def prepare_for_simultaneous(*forward_params):
     inp_keys = _inference.forward_arg_order
     d = {k: v for k, v in zip(inp_keys, forward_params)}
 
     # Define the pile
-    pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2,
-                                L=d["pile_L"],
-                                f_ck=d["f_ck"],
-                                alpha_e=d["alpha_e"],
-                                G_F0=d["G_F0"],
-                                reinforcement_ratio=d["reinforcement_ratio"],)
+    # pile = _pile_and_soil.Pile(R=d["pile_D"][0]/2,
+    #                             L=d["pile_L"],
+    #                             f_ck=d["f_ck"],
+    #                             alpha_e=d["alpha_e"],
+    #                             G_F0=d["G_F0"],
+    #                             reinforcement_ratio=d["reinforcement_ratio"],)
+    pile = _pile_and_soil_nocrack.Pile(R=d["pile_D"][0] / 2, L=d["pile_L"], E=d["pile_E"])
 
     # Define the soil
     layers = []
     for i in range(len(d["l_layer_type"])):
         if d["l_layer_type"][i] == 0: # clay
-            layers.append(_pile_and_soil.ClayLayer(
+            layers.append(_pile_and_soil_nocrack.ClayLayer(
                 gamma_d = d["l_gamma_d"][i],
                 e = d["l_e"][i],
                 N_c = d["l_c1"][i],
@@ -35,7 +37,7 @@ def prepare_for_scipy(*forward_params):
                 base_depth = d["l_base_depth"][i]
             ))
         elif d["l_layer_type"][i] == 1: # sand
-            layers.append(_pile_and_soil.SandLayer(
+            layers.append(_pile_and_soil_nocrack.SandLayer(
                 gamma_d = d["l_gamma_d"][i],
                 e = d["l_e"][i],
                 N_q = d["l_c1"][i],
@@ -47,7 +49,7 @@ def prepare_for_scipy(*forward_params):
         else:
             raise ValueError(f"Unknown layer id '{d["l_layer_type"][i]}' in layer {i}. Must be 0 (clay) or 1 (sand).")
         
-    soil = _pile_and_soil.Soil(layers)
+    soil = _pile_and_soil_nocrack.Soil(layers)
 
     # print(f"pile equiv E: {pile.equivalent_compressive_E}")
         
@@ -55,8 +57,7 @@ def prepare_for_scipy(*forward_params):
 
     return prepared_forward_params
 
-
-def create_scipy_ops(config, model_type: str = "nonlinear_cracking"):
+def create_scipy_ops(config, model_type: str = "simultaneous"):
     # Currently DOES NOT support variable pile diameter, due to pile_and_soil stuff
     # model_type can choose from: "nonlinear_cracking", "nonlinear_asymmetric", "nonlinear", "linear"
     # nonlinear and linear refer to the t-z curves used. Linear is a straight line and has an analytic solution.
@@ -65,22 +66,28 @@ def create_scipy_ops(config, model_type: str = "nonlinear_cracking"):
     # "nonlinear_cracking" gives the concrete some tensile strength until it cracks.
 
     def forward_model(*forward_params):
-        res = _model_springs.solve_springs4(*prepare_for_scipy(*forward_params))
+        if model_type == "simultaneous":
+            res = _model_springs_nocrack.solve_springs4(*prepare_for_simultaneous(*forward_params))
+        elif model_type == "shooting":
+            res = _model_ivp.shooting_api_wrapper(*forward_params)
+        elif model_type == "bvp":
+            # print("Forward params: ", forward_params)
+            # input()
+            res = _model_bvp.forward_api(*forward_params)
 
-        # Check if any of "zeros" are nan, if so the result is probably wrong. (note, if all are nan it could mean P > P_ult which is expected behaviour)
-        # "zeros" is the array of simultaneous equations results that should all be [almost] zero for a good solution.
-        if np.any(np.isnan(res.zeros)) and not np.all(np.isnan(res.zeros)):
+        # Check if any of forces are nan, if so the result is probably wrong. (note, if all are nan it could mean P > P_ult which is expected behaviour)
+        if np.any(np.isnan(res.F)) and not np.all(np.isnan(res.F)):
             raise RuntimeError("Some of the zeros are nan, some are not. This is unexpected.")
         
         # Check that if the results is all nan, then P > P_ult (otherwise it's an error)
-        if np.all(np.isnan(res.zeros)):
-            if res.P / res.P_cap > 1:
+        if np.all(np.isnan(res.F)):
+            if res.P / res.P_cap > 0.99 or res.too_light == True:
                 # print("P > P_ult! Nans will be returned")
                 pass
             else:
-                raise RuntimeError("All zeros are nan, but P <= P_ult. This is unexpected.")
+                raise RuntimeError("All zeros are nan, but both P <= P_ult and too_light == False. This is unexpected.")
 
-        return res.F
+        return res.strain
 
     def forward_log_likelihood(sigma, data, *forward_params):
         # Assuming additive gaussian white noise
@@ -113,6 +120,9 @@ def create_scipy_ops(config, model_type: str = "nonlinear_cracking"):
 
         def perform(self, node: Apply, inputs: list[np.ndarray], outputs: list[list[None]]) -> None:
             # This is the method that compute numerical output given numerical inputs.
+
+            if config.do_print:
+                print(f"inputs: {inputs}")
 
             log_likelihood = logp_wrapper(config.sigma, *inputs,
                                                  *config.fixed_forward_params_dict.values(),

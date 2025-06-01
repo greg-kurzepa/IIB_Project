@@ -1,0 +1,18 @@
+DEBUG:filelock:Attempting to acquire lock 2099836690336 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 2099836690336 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 2099836690336 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 2099836690336 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to acquire lock 2099841236048 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 2099841236048 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 2099841236048 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 2099841236048 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+INFO:pymc.sampling.forward:Sampling: [_E_soil, _Kb, likelihood]
+INFO:pymc.smc.sampling:Initializing SMC sampler...
+INFO:pymc.smc.sampling:Sampling 4 chains in 4 jobs
+INFO:pymc.stats.convergence:The rhat statistic is larger than 1.01 for some parameters. This indicates problems during sampling. See https://arxiv.org/abs/1903.08008 for details
+INFO:pymc.smc.sampling:Initializing SMC sampler...
+INFO:pymc.smc.sampling:Sampling 4 chains in 4 jobs
+INFO:pymc.sampling.forward:Sampling: [likelihood]
+INFO:pymc.sampling.forward:Sampling: [_E_soil, _Kb, likelihood]
+INFO:pymc.smc.sampling:Initializing SMC sampler...
+INFO:pymc.smc.sampling:Sampling 4 chains in 4 jobs

@@ -1,0 +1,157 @@
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.002010584 sec
+DEBUG:jax._src.xla_bridge:No jax_plugins namespace packages available
+DEBUG:jax._src.xla_bridge:Initializing backend 'cpu'
+DEBUG:jax._src.xla_bridge:Backend 'cpu' initialized
+DEBUG:jax._src.xla_bridge:Initializing backend 'tpu'
+INFO:jax._src.xla_bridge:Unable to initialize backend 'tpu': UNIMPLEMENTED: LoadPjrtPlugin is not implemented on windows yet.
+DEBUG:jax._src.interpreters.pxla:Compiling minimum with global shapes and types [ShapedArray(float64[]), ShapedArray(float64[])]. Argument mapping: (UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(minimum) in 0.061269283 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 8e06f1a9e1c2978c85c3fb6b3bdeb7de7ef75ed62792cd4147a0f6d7365fb980
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 8e06f1a9e1c2978c85c3fb6b3bdeb7de7ef75ed62792cd4147a0f6d7365fb980
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: 467e65369bc9e941364e0fbc4a5f4454fef766003e9e28873b77868db9e291b3
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 558bb6e684fd5c1ac79ae292403c45e617569e13666e70dc5197edc8ef442370
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 558bb6e684fd5c1ac79ae292403c45e617569e13666e70dc5197edc8ef442370
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: b498a8ff358c918c4f7b7f5409e7281720f34a6a8bc8face7223608c8fd678fc
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: c2bc62f2600618e0f67878f32edb825919a0c34c8a19a825ff7ccf152d2ba73b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: e2fdb9d30da896212260afac3f87fd5637051843519ed84c0914e8dd59310c57
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: d7003e39430c920208a031e6d93cb8b2e6fc48d16320642f16d8970ef5125f84
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: d7003e39430c920208a031e6d93cb8b2e6fc48d16320642f16d8970ef5125f84
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_minimum' with key 'jit_minimum-d7003e39430c920208a031e6d93cb8b2e6fc48d16320642f16d8970ef5125f84'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_minimum' because it took < 1.00 seconds to compile (0.06s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(minimum) in 0.095823288 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming minimum for pjit in 0.001529932 sec
+DEBUG:jax._src.interpreters.pxla:Compiling minimum with global shapes and types [ShapedArray(float64[99]), ShapedArray(float64[99])]. Argument mapping: (UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(minimum) in 0.006003380 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 393faed9ed96a9c5be6105c6172fd5a51c4788f955b1a7ad1854f469fc19f486
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 393faed9ed96a9c5be6105c6172fd5a51c4788f955b1a7ad1854f469fc19f486
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: d4863ac61f6413d3e0db37ab836a74b6336da00195fb6a1d3a44ff0385846895
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 3c66224f02bb9c288f18afdb5212124e0b9b163317049cfb2ee4c83cd2b0acc5
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 3c66224f02bb9c288f18afdb5212124e0b9b163317049cfb2ee4c83cd2b0acc5
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: b498a8ff358c918c4f7b7f5409e7281720f34a6a8bc8face7223608c8fd678fc
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: 1c5cd28e712a6dd6327958361b92a7f5dfc3624cf3e060670228f07941988191
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: 6fb3791b84b32bfbcb995e8b4c2c9632d29dfd891f7f378850b327ed3a981cf0
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: d4308c88e05c79d259e4fb2e4d8cb68782e60b40ec42171d414e6106562b3054
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: d4308c88e05c79d259e4fb2e4d8cb68782e60b40ec42171d414e6106562b3054
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_minimum' with key 'jit_minimum-d4308c88e05c79d259e4fb2e4d8cb68782e60b40ec42171d414e6106562b3054'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_minimum' because it took < 1.00 seconds to compile (0.05s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(minimum) in 0.076433897 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming multiply for pjit in 0.000999212 sec
+DEBUG:jax._src.interpreters.pxla:Compiling multiply with global shapes and types [ShapedArray(float64[]), ShapedArray(float64[99])]. Argument mapping: (UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(multiply) in 0.007763863 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: b47e73f8bc5c64ee7b2532eee5303e823b777e57543b428aaf0c2f71850bb504
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: b47e73f8bc5c64ee7b2532eee5303e823b777e57543b428aaf0c2f71850bb504
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: 68c37a691515c4a07cdb907e7982828bc968eecaef86d65699b8e4b6064730e9
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 1a8c044edd6651a653a272f538be5307af50d6e94315dbee350ec638acc842e2
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 1a8c044edd6651a653a272f538be5307af50d6e94315dbee350ec638acc842e2
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: b498a8ff358c918c4f7b7f5409e7281720f34a6a8bc8face7223608c8fd678fc
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: a3aad0141a3dc92fcdc698cfcf8ce0d2f4576651194431d6b6cb849244f85333
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: c5a92c4d50717533e8748ae58c396acb7f7fd8253d690864ea4902e14726f2e2
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 9fa0e0fd48e898f7c1425ede0ad2216103d72b8b0c80a43ad33c3f2c2da7fbba
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 9fa0e0fd48e898f7c1425ede0ad2216103d72b8b0c80a43ad33c3f2c2da7fbba
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_multiply' with key 'jit_multiply-9fa0e0fd48e898f7c1425ede0ad2216103d72b8b0c80a43ad33c3f2c2da7fbba'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_multiply' because it took < 1.00 seconds to compile (0.06s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(multiply) in 0.113100767 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming _reduce_sum for pjit in 0.002013922 sec
+DEBUG:jax._src.interpreters.pxla:Compiling _reduce_sum with global shapes and types [ShapedArray(float64[99])]. Argument mapping: (UnspecifiedValue,).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(_reduce_sum) in 0.009444714 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 8b4da107981b7809e3055974b3ed742f836c56f9621d01f7fd4f563a3866d48e
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 8b4da107981b7809e3055974b3ed742f836c56f9621d01f7fd4f563a3866d48e
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: b13ae9d4a28855b755f20b2de36a575f519512e74769c4933365dd395748ee2d
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 38781ab12c0c15debc2e9d055d4b46ae6ba67dd127e65232836ad1bc5660215f
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 38781ab12c0c15debc2e9d055d4b46ae6ba67dd127e65232836ad1bc5660215f
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: 2d2e8bb98f58e7e7cee99a4a8e802b102ed45680093c4139402703fc0815d611
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: c48739cb8287eb25f19d46e6718756cabbad0fe72a9cfda87727824eb3abf80d
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: 4a73efa3cc48f2ff97f1827ceaf11a3155ca757b5d64288c5a31dcad731ddff6
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: c6349bde103d9a1cb25c14ab8cef0d8fb14bca6a20fa893e85b75a9c212d704c
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: c6349bde103d9a1cb25c14ab8cef0d8fb14bca6a20fa893e85b75a9c212d704c
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit__reduce_sum' with key 'jit__reduce_sum-c6349bde103d9a1cb25c14ab8cef0d8fb14bca6a20fa893e85b75a9c212d704c'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit__reduce_sum' because it took < 1.00 seconds to compile (0.12s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(_reduce_sum) in 0.178566456 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming add for pjit in 0.002012491 sec
+DEBUG:jax._src.interpreters.pxla:Compiling add with global shapes and types [ShapedArray(float64[]), ShapedArray(float64[])]. Argument mapping: (UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(add) in 0.007240534 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: e3f4368b3ae73021b1b27b741405e6c14cc871daa72dd9c028b05d8a531e70e0
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: e3f4368b3ae73021b1b27b741405e6c14cc871daa72dd9c028b05d8a531e70e0
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: 2c783884c1ca03e8d00c303e169e3317659bb6d8995d9dff90304f8815999675
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: 56c7a1427eb7d17cd04674832225fdff0fe4bb658955078cb5840da539245561
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: 56c7a1427eb7d17cd04674832225fdff0fe4bb658955078cb5840da539245561
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: b498a8ff358c918c4f7b7f5409e7281720f34a6a8bc8face7223608c8fd678fc
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: 6e07cf62e19850396f104c9e7a5c63976942be1f9fc0270bbef2bafbff5f58cc
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: dbfca1e3e2825f49a9022580307a5a65f1666ea185648697e3cb1b9cf9d80202
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 49dd603aa60a41c8957c955b01eeb93ae79d27e6e7696a783603ef3f89e80191
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 49dd603aa60a41c8957c955b01eeb93ae79d27e6e7696a783603ef3f89e80191
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_add' with key 'jit_add-49dd603aa60a41c8957c955b01eeb93ae79d27e6e7696a783603ef3f89e80191'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_add' because it took < 1.00 seconds to compile (0.03s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(add) in 0.064672947 sec
+DEBUG:jax._src.dispatch:Finished tracing + transforming greater_equal for pjit in 0.000998735 sec
+DEBUG:jax._src.interpreters.pxla:Compiling greater_equal with global shapes and types [ShapedArray(float64[]), ShapedArray(float64[], weak_type=True)]. Argument mapping: (UnspecifiedValue, UnspecifiedValue).
+DEBUG:jax._src.dispatch:Finished jaxpr to MLIR module conversion jit(greater_equal) in 0.007630587 sec
+DEBUG:jax._src.compiler:get_compile_options: num_replicas=1 num_partitions=1 device_assignment=[[CpuDevice(id=0)]]
+DEBUG:jax._src.compiler:get_compile_options XLA-AutoFDO profile: using XLA-AutoFDO profile version -1
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized computation: 979cec0c31fe92ad5775480568cb4e7293ea03ba497e6c3980a60d8765f35b16
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing computation: 979cec0c31fe92ad5775480568cb4e7293ea03ba497e6c3980a60d8765f35b16
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized jax_lib version: 14848c5f87427ae54b00bf9eb86bfd3fb6288e611d3af1d7739ee09050cd46df
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing jax_lib version: 27f758d55223c349d9a0df93fcacb4a3bd92148b19cbb840633b07ce7abd8833
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized backend version: d01711a267aea6695c681e4e75ed43f0e973d36f19b2f3c261d517b8c32285b2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing backend version: b03c087655a404b16acffacea75fc509439dc09c99afc41080f19df265f668eb
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized XLA flags: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing XLA flags: b03c087655a404b16acffacea75fc509439dc09c99afc41080f19df265f668eb
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compile_options: b498a8ff358c918c4f7b7f5409e7281720f34a6a8bc8face7223608c8fd678fc
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compile_options: 61ad110beb21aabaeb805a48e6fedcf4efb639ae57323e9ed231e24a96424af4
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized accelerator_config: e6111c4f17b209a93c7fbdc7f2bb549a8475aa4290ecbac55e3a4249fb1a6cc6
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing accelerator_config: f853c77b062a7a0cb5fef01059ee679198d2cfda4accecafba170bb05c88553b
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized compression: 0ea55c28f8014d8886b6248fe3da5d588f55c0823847a6b4579f1131b051b5e2
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing compression: 37138448c0c073b0136dd27f3813db45411f28201d270deb2e6622f7ac4f9e5e
+DEBUG:jax._src.cache_key:get_cache_key hash of serialized custom_hook: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+DEBUG:jax._src.cache_key:get_cache_key hash after serializing custom_hook: 37138448c0c073b0136dd27f3813db45411f28201d270deb2e6622f7ac4f9e5e
+DEBUG:jax._src.compilation_cache:get_executable_and_time: cache is disabled/not initialized
+DEBUG:jax._src.compiler:PERSISTENT COMPILATION CACHE MISS for 'jit_greater_equal' with key 'jit_greater_equal-37138448c0c073b0136dd27f3813db45411f28201d270deb2e6622f7ac4f9e5e'
+DEBUG:jax._src.compiler:Not writing persistent cache entry for 'jit_greater_equal' because it took < 1.00 seconds to compile (0.02s)
+DEBUG:jax._src.dispatch:Finished XLA compilation of jit(greater_equal) in 0.057052135 sec
+DEBUG:filelock:Attempting to acquire lock 2589687148336 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 2589687148336 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock

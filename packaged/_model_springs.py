@@ -75,7 +75,8 @@ def f_simultaneous_nondim2(x, dz, N, pile, P_over_Afck, Q_ult_over_Afck, tau_ult
 
 class SolveData():
     def __init__(self, F, strain, d, u, zeros, tau, Q,
-                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap):
+                 shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap,
+                 Q_cap=None, S_cap=None):
         
         self.F = F
         self.strain = strain
@@ -92,6 +93,9 @@ class SolveData():
         self.Q_ult = Q_ult
         self.P = P
         self.P_cap = P_cap
+
+        self.Q_cap = Q_cap
+        self.S_cap = S_cap
 
 def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
                    tau_over_tau_ult_func = None, Q_over_Q_ult_func = None,
@@ -225,4 +229,4 @@ def solve_springs4(pile, soil, P, z_w, N=100, t_res_clay=0.9,
     Q = min(Q_ult * Q_over_Q_ult_func(d[-1]), Q_limit)
 
     return SolveData(F, strain, d, u, zeros, tau, Q, 
-                     shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap)
+                     shaft_pressure_limit, Q_limit, eff_stress, tau_ult, Q_ult, P, P_cap, Q_cap, S_cap)

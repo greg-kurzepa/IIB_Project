@@ -54,25 +54,26 @@ def plot_2d_kde(x, y, ax=None, cmap=plt.cm.gist_earth_r, title="2D KDE Plot", xl
         return xmin, xmax, ymin, ymax
 
 def plot_prior_samples(idata):
-    varname = list(idata.prior.data_vars)[0]
-    print(f"Plotting for samples from variable {varname}")
 
-    prior_samples = np.array(idata.prior[varname])[0]
-    assert prior_samples.shape[1] == 2, f"Expected prior samples to have shape (n_samples, 2), but got {prior_samples.shape}"
+    for varname in list(idata.prior.data_vars):
+        print(f"Plotting for samples from variable {varname}")
+        prior_samples = np.array(idata.prior[varname])[0]
 
-    # Get indexes of samples which had P > P_ult
-    # i.e. the ones where the force profile is all np.nan
-    over_limit_idxs = np.all(np.isnan(idata.prior_predictive["likelihood"]), axis=2)[0]
+        assert prior_samples.shape[1] == 2, f"Expected prior samples to have shape (n_samples, 2), but got {prior_samples.shape}"
 
-    over_limit_samples = prior_samples[over_limit_idxs]
-    under_limit_samples = prior_samples[~over_limit_idxs]
+        # Get indexes of samples which had P > P_ult
+        # i.e. the ones where the force profile is all np.nan
+        over_limit_idxs = np.all(np.isnan(idata.prior_predictive["likelihood"]), axis=2)[0]
 
-    plt.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
-    plt.scatter(under_limit_samples[:, 0], under_limit_samples[:, 1], color='blue', label='$P \\leq P_\{ult\}$')
-    plt.scatter(over_limit_samples[:, 0], over_limit_samples[:, 1], color='k', label='$P \\gt P_\{ult\}$')
+        over_limit_samples = prior_samples[over_limit_idxs]
+        under_limit_samples = prior_samples[~over_limit_idxs]
 
-    # KDE plot
-    # _ = plot_2d_kde(under_limit_samples[:, 0], under_limit_samples[:, 1], ax=plt.gca(), title="KDE of Prior Samples")
-    # plt.colorbar(label="Density")
+        plt.ticklabel_format(axis='both', style='sci', scilimits=(0,0))
+        plt.scatter(under_limit_samples[:, 0], under_limit_samples[:, 1], color='blue', label='$P \\leq P_\{ult\}$')
+        plt.scatter(over_limit_samples[:, 0], over_limit_samples[:, 1], color='k', label='$P \\gt P_\{ult\}$')
 
-    plt.show()
+        # KDE plot
+        # _ = plot_2d_kde(under_limit_samples[:, 0], under_limit_samples[:, 1], ax=plt.gca(), title="KDE of Prior Samples")
+        # plt.colorbar(label="Density")
+
+        plt.show()

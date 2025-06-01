@@ -9,6 +9,7 @@
 import graphviz
 import arviz as az
 import numpy as np
+import pandas as pd
 import pymc as pm
 import pytensor
 import pytensor.tensor as pt
@@ -21,7 +22,6 @@ import logging
 import matplotlib
 import matplotlib.pyplot as plt
 
-from . import _pile_and_soil
 from . import _utilities
 # from . import _ops_jax
 from . import _ops_scipy
@@ -53,10 +53,12 @@ default_random_seed = 716743
 
 # this must be the same for all solvers
 # NOTE the jax solver is out of date in this regard, so it cannot be used right now.
-forward_arg_order = ("pile_D", "pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio",
-                    "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit",
-                    "l_base_depth", "P", "z_w", "N", "t_res_clay")
-static_argnames = ("pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio", "P", "z_w", "N", "t_res_clay")
+# forward_arg_order = ("pile_D", "pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio",
+#                     "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit",
+#                     "l_base_depth", "P", "z_w", "N", "t_res_clay")
+# static_argnames = ("pile_L", "f_ck", "alpha_e", "G_F0", "reinforcement_ratio", "P", "z_w", "N", "t_res_clay")
+forward_arg_order = ("pile_D", "pile_L", "pile_E", "l_layer_type", "l_gamma_d", "l_e", "l_c1", "l_c2", "l_shaft_pressure_limit", "l_end_pressure_limit", "l_base_depth", "P", "z_w", "N", "t_res_clay")
+static_argnames = ("pile_L", "pile_E", "P", "z_w", "N", "t_res_clay")
 forward_static_argnums = [forward_arg_order.index(x) for x in static_argnames]
 
 # Function to enable plotting functional confidence intervals, taken from pytorch examples
@@ -101,16 +103,13 @@ class InferenceConfig():
         - `inferred_forward_params_dict`: Inferred physical model parameters, must be selected from in inferred_model_params_dict. It specifies their prior distributions.
     """
 
-    def __init__(self, sigma: bool = 0.05e6, sand_plug_factor: float = 1.25, N_layers: int = 2,
+    def __init__(self, sand_plug_factor: float = 1.25, P: float = 3.6e6, N_layers: int = 2,
                  fixed_forward_params_dict: dict = None,
                  inferred_forward_params_dict: dict = None,
                  inferrable_forward_params_dict: dict = None):
         
-        self.do_print = True
+        self.do_print = False
         self.do_plot = True
-        
-        # Sigma is only used in the log likelihood and not the forward model, so is left out of the below dictionaries
-        self.sigma = sigma
 
         self.N_layers = N_layers
         self.sand_plug_factor = sand_plug_factor
@@ -119,22 +118,37 @@ class InferenceConfig():
         if fixed_forward_params_dict is None:
             N = 100
             self.fixed_forward_params_dict = {
-                "P" : 1.8e6, # top axial load
+                "P" : P, # top axial load
                 "N" : N, # number of nodes along pile
                 "z_w" : 3, # water table depth
                 "l_layer_type" : np.array([1, 1]), # 0 for clay, 1 for sand
                 "l_base_depth" : np.array([12.5, 30]), # base depth of each layer (final value is the length of the pile)
-                "t_res_clay" : 0.9,
-
                 "pile_L" : 30, # pile length
                 "pile_D" : np.full(N, 0.6), # pile diameter
-                "f_ck" : 50, # concrete compressive strength, in MPa
-                "alpha_e" : 1.0, # scaling factor for concrete elastic modulus based on type of aggregate
-                "G_F0" : 0.065, # fracture energy of concrete, in N/mm
-                "reinforcement_ratio" : 0.04, # steel area as proportion of pile area
+                "pile_E" : 35e9, # pile elastic modulus
+                "t_res_clay" : 0.9
             }
+            
+            # self.fixed_forward_params_dict = {
+            #     "P" : 1.8e6, # top axial load
+            #     "N" : N, # number of nodes along pile
+            #     "z_w" : 3, # water table depth
+            #     "l_layer_type" : np.array([1, 1]), # 0 for clay, 1 for sand
+            #     "l_base_depth" : np.array([12.5, 30]), # base depth of each layer (final value is the length of the pile)
+            #     "t_res_clay" : 0.9,
+
+            #     "pile_L" : 30, # pile length
+            #     "pile_D" : np.full(N, 0.6), # pile diameter
+            #     "f_ck" : 50, # concrete compressive strength, in MPa
+            #     "alpha_e" : 1.0, # scaling factor for concrete elastic modulus based on type of aggregate
+            #     "G_F0" : 0.065, # fracture energy of concrete, in N/mm
+            #     "reinforcement_ratio" : 0.04, # steel area as proportion of pile area
+            # }
         else:
             self.fixed_forward_params_dict = fixed_forward_params_dict
+
+        # Sigma is only used in the log likelihood and not the forward model, so is left out of the below dictionaries
+        self.sigma = 20e-6 # 20 microstrains
 
         # Contains the ground truth values of the parameters for each layer that *could* be inferred
         # c1 is N_c for clay and N_q for sand
@@ -162,9 +176,11 @@ class InferenceConfig():
             self.inferred_forward_params_dict = {
                 "l_gamma_d" : {
                     "dist" : pm.LogNormal,
-                    "mean" : np.array([15e3, 17e3]),
-                    "stdev" : np.array([3e3, 3e3]),
                     "wrapper_fun" : _get_lognormal_params,
+                    "args" : {
+                        "mean" : np.array([14.5e3, 18e3]),
+                        "stdev" : np.array([3e3, 3e3]),
+                    }
                 }
             }
         else:
@@ -211,7 +227,7 @@ class MadeModel():
         self.data = data
         self.forward = forward
 
-def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: InferenceConfig = None, random_seed: int = default_random_seed):
+def make_pymc_model(solver_type: str = "scipy_fsolve_simultaneous", inference_config: InferenceConfig = None, data_dir: str = None, random_seed: int = default_random_seed):
     solver_type = solver_type
 
     if inference_config is None:
@@ -222,31 +238,38 @@ def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: Inferen
     # Of the code below, the rest of the program will only interact with logp_op and (if it exists) logp_grad_op
     # The jax options have the grad ops, allowing HMC monte carlo, but the scipy ones do not so require Metropolis sampling
     if solver_type == "jax_fsolve":
-        pass
+        raise NotImplementedError()
         # forward, logp_op, logp_grad_op, test_out = _ops_jax.create_jax_ops(config)
-    elif solver_type == "scipy_fsolve":
-        forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config)
+    elif solver_type == "scipy_fsolve_simultaneous":
+        forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config, model_type="simultaneous")
+    elif solver_type == "scipy_fsolve_shooting":
+        forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config, model_type="shooting")
+    elif solver_type == "scipy_fsolve_bvp":
+        forward, logp_op, _, test_out = _ops_scipy.create_scipy_ops(config, model_type="bvp")
 
     # Generate ground truth data
     random_seed = random_seed
     rng = np.random.default_rng(random_seed)
 
-    unordered_true_params = (*config.inferrable_forward_params_dict.values(), *config.fixed_forward_params_dict.values())
-    ordered_true_params = _utilities.reorder_params(*unordered_true_params, config=config, unordered_argnames=config.truth_arg_order)
-    true_forces = np.array(forward(*ordered_true_params))
-    data = config.sigma * rng.normal(size=config.fixed_forward_params_dict["N"]) + true_forces
+    if data_dir is not None:
+        df_data = pd.read_csv(data_dir)
+        true_strain = np.array(df_data["True Strain"])
+        data = np.array(df_data["Observed Strain"])
+    else:
+        raise NotImplementedError("Still does forces not strains")
+        unordered_true_params = (*config.inferrable_forward_params_dict.values(), *config.fixed_forward_params_dict.values())
+        ordered_true_params = _utilities.reorder_params(*unordered_true_params, config=config, unordered_argnames=config.truth_arg_order)
+        true_forces = np.array(forward(*ordered_true_params))
+        data = config.sigma * rng.normal(size=config.fixed_forward_params_dict["N"]) + true_forces
 
     if config.do_plot:
         # Plot true and observed force profile
-        plt.plot(config.z, true_forces, label="true forces", color="orange")
-        plt.scatter(config.z, data, label="observed forces", s=10)
+        plt.plot(config.z, true_strain, label="true strains", color="orange")
+        plt.scatter(config.z, data, label="observed strains", s=10)
         plt.xlabel("depth $z$")
-        plt.ylabel("$F(z)$")
+        plt.ylabel("$strain (z)$")
         plt.legend()
         plt.show()
-
-    # Test that the Ops give the right output
-    test_out(config.sigma, data, np.array([15e3, 17e3]))
 
     # This is closure to create the function that PyMC will call to generate samples from the forward model
     def random_f_wrapper(*priors, rng=None, size=None):
@@ -260,12 +283,11 @@ def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: Inferen
         priors = {}
         for name, dist_params in config.inferred_forward_params_dict.items():
             dist = dist_params["dist"]
-            mean = dist_params["mean"]
-            stdev = dist_params["stdev"]
-            wrapper_fun = dist_params["wrapper_fun"]
+            wrapper_fun = dist_params["wrapper_fun"] if dist_params["wrapper_fun"] is not None else lambda **args: args
+            args = dist_params["args"]
 
             # Create a PyMC variable with the same name
-            priors[name] = dist(name, shape=mean.shape, **wrapper_fun(mean, stdev))
+            priors[name] = dist(name, shape=config.N_layers, **wrapper_fun(**args))
 
         # Likelihood, i.e. p(x|theta)
         # In order to do prior/posterior predictive checks, it needs the 'random' argument which allows is to generate one sample from the pdf
@@ -276,6 +298,9 @@ def make_pymc_model(solver_type: str = "scipy_fsolve", inference_config: Inferen
 
     # Visualise the model
     pm.model_to_graphviz(model)
+
+    # Test that the Ops give the right output
+    test_out(config.sigma, data, *pm.draw(model.free_RVs, draws=1, random_seed=random_seed))
 
     initial_point = model.initial_point()
     print(f"Initial point: {initial_point}")
@@ -295,40 +320,45 @@ def prior_predictive(model: pm.Model, idata: az.InferenceData = None, draws: int
     else:
         return idata_pp
 
-def sample_posterior(model: pm.Model, idata: az.InferenceData = None, inference_draws: int = 100, tune_draws: int = 100, chains: int = 4, do_plot: bool = True, random_seed: int = default_random_seed):
+def sample_posterior(model: pm.Model, sample_type="smc", idata: az.InferenceData = None, inference_draws: int = 100, tune_draws: int = 100, chains: int = 4, do_plot: bool = True, random_seed: int = default_random_seed):
     
-    print(f"Sampling {inference_draws} draws with {tune_draws} tuning steps...")
-    with model:
-        idata_post = pm.sample(draws=inference_draws, tune=tune_draws, cores=min(chains, 4), chains=4, random_seed=random_seed)
-    print("Done sampling")
+    if sample_type == "smc":
+        print(f"Sampling SMC for {inference_draws} draws")
+        with model:
+            idata_post = pm.sample_smc(draws=inference_draws, cores=min(chains, 4), chains=4, random_seed=random_seed)
+        print("Done sampling!")
+    
+    else:
+        print(f"Sampling {inference_draws} draws with {tune_draws} tuning steps...")
+        with model:
+            idata_post = pm.sample_smc(draws=inference_draws, tune=tune_draws, cores=min(chains, 4), chains=4, random_seed=random_seed)
+        print("Done sampling")
 
     if do_plot:
-        var_names = [x.name for x in model.free_RVs]
+        try:
+            var_names = [x.name for x in model.free_RVs]
 
-        az.plot_trace(idata, var_names=var_names)
-        plt.show()
+            az.plot_trace(idata_post, var_names=var_names)
+            plt.show()
 
-        # Compare (plot) the prior and posterior distributions.
-        # NOTE, the prior will be the sampled prior for the predictive distribution and does not reflect the actual prior used in inference.
-        az.plot_dist_comparison(idata, var_names=var_names)
-        plt.show()
+            # Compare (plot) the prior and posterior distributions.
+            # NOTE, the prior will be the sampled prior for the predictive distribution and does not reflect the actual prior used in inference.
+            az.plot_dist_comparison(idata_post, var_names=var_names)
+            plt.show()
+        except Exception as e:
+            print(f"Error while plotting posterior plots: {e}")
 
     if idata is not None:
         idata.extend(idata_post)
     else:
         return idata_post
     
-def posterior_predictive(model: pm.Model, idata: az.InferenceData = None, random_seed: int = default_random_seed):
+def posterior_predictive(model: pm.Model, idata_posterior: az.InferenceData = None, random_seed: int = default_random_seed):
 
     print("Sampling posterior predictive...")
     with model:
-        idata_pp = pm.sample_posterior_predictive(idata, random_seed=random_seed)
+        idata_posterior.extend(pm.sample_posterior_predictive(idata_posterior, random_seed=random_seed))
     print("Done sampling posterior predictive")
-
-    if idata is not None:
-        idata.extend(idata_pp)
-    else:
-        return idata_pp
     
 def plot_profile(made_model: MadeModel, priors: tuple = None, ax: matplotlib.axes.Axes = None):
     """Takes in priors_tuple (must be in the right order as the priors in the model)
@@ -352,8 +382,8 @@ def plot_profile(made_model: MadeModel, priors: tuple = None, ax: matplotlib.axe
 
     ax.plot(made_model.config.z, profile, label=f"priors: {str(priors)}")
     ax.set_xlabel("depth $z$")
-    ax.set_ylabel("$F(z)$")
-    ax.set_title("Deterministic Force Profile")
+    ax.set_ylabel("$strain (z)$")
+    ax.set_title("Deterministic Strain Profile")
     ax.set_xlim(left=0, right=made_model.config.fixed_forward_params_dict["pile_L"])
 
     if show:
@@ -375,7 +405,7 @@ def plot_idata_trace(z, idata_trace, data=None, ax=None, trace_label=None, title
     if title is not None:
         ax.set_title(title)
     else:
-        ax.set_title("$F(z)$, Prior predictive distribution")
+        ax.set_title("$Strain (z)$, Prior predictive distribution")
 
     if ax is not None:
         plt.legend()

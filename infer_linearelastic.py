@@ -22,7 +22,7 @@ if __name__ == "__main__":
     print(f"Running on PyMC v{pm.__version__}")
     az.style.use("arviz-darkgrid")
 
-    P = 3.6e6
+    P = 4.6e6
     N = 100
     sigma = 20e-6
 
@@ -42,7 +42,7 @@ if __name__ == "__main__":
     # d, strain = solver.solve_linearelastic_analytic(z, P, pile, lambda_k_list, Omega, base_depths)
     # force = - pile.A * pile.E * strain
     # data = force + sigma * rng.normal(size=N)
-    df_data = pd.read_csv(r"C:\Users\gregk\Documents\MyDocuments\IIB\Project\Alt Code\Model - Concrete Cracking\observed\compression-4,6MN-strain.csv")
+    df_data = pd.read_csv(r"C:\Users\gregk\Documents\MyDocuments\IIB\Project\Alt Code\Model - Concrete Cracking\observed\compression-4,6MN-strain_corrected.csv")
     true_strain = np.array(df_data["True Strain"])
     data = np.array(df_data["Observed Strain"])
 
@@ -173,15 +173,15 @@ if __name__ == "__main__":
     plot_idata_trace(z, idata_postp["posterior_predictive"]["likelihood"], data, title="Strain Posterior Predictive Distribution")
 
     #%% Save the idata, and the model
+    idata_pp.extend(idata_post_smc)
+    idata_pp.extend(idata_postp)
 
     import cloudpickle
-    save_name = "results\\linearelastic_idata.pkl"
+    save_name = "results_new\\linearelastic_idata.pkl"
     with open(save_name, "wb") as f:
         cloudpickle.dump(idata_pp, f)
 
-    #%%
-
-    model_save_name = "results\\linearelastic_model.pkl"
+    model_save_name = "results_new\\linearelastic_model.pkl"
     with open(model_save_name, "wb") as f:
         cloudpickle.dump(model, f)
 

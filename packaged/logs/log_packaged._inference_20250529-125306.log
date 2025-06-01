@@ -1,0 +1,139 @@
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15000. 17000.]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3561e-02, zero_eq: 5.5293e-01, zero_eq/P: 8.9182e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15000. 17000.]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3561e-02, zero_eq: 5.5293e-01, zero_eq/P: 8.9182e-08
+DEBUG:filelock:Attempting to acquire lock 3003381806480 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 3003381806480 acquired on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Attempting to release lock 3003381806480 on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:filelock:Lock 3003381806480 released on C:\Users\gregk\AppData\Local\PyTensor\compiledir_Windows-11-10.0.26100-SP0-Intel64_Family_6_Model_140_Stepping_1_GenuineIntel-3.12.3-64\.lock
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: l_gamma_d
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14500. 18000.]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3044e-02, zero_eq: 1.6172e-01, zero_eq/P: 2.6084e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15000 17000]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3561e-02, zero_eq: 5.5293e-01, zero_eq/P: 8.9182e-08
+INFO:pymc.sampling.forward:Sampling: [l_gamma_d, likelihood]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12808.1292533  14906.74475826]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12427.49091771 16010.67031283]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [19420.20317419 14365.05835455]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5107e-02, zero_eq: 2.3769e+00, zero_eq/P: 3.8337e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12411.84267239 16879.22367805]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [17355.69897693 15684.0671713 ]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.6254e-02, zero_eq: 2.3134e-01, zero_eq/P: 3.7314e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [19259.68742485 18847.70324044]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5115e-02, zero_eq: -3.2596e-09, zero_eq/P: -5.2575e-16
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15720.91472679 14973.26320559]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4293e-02, zero_eq: 5.7655e-02, zero_eq/P: 9.2993e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15418.15320152 19246.55391011]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4036e-02, zero_eq: -3.2500e-03, zero_eq/P: -5.2419e-10
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15632.82966066 17094.24430672]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4233e-02, zero_eq: 4.6103e+00, zero_eq/P: 7.4359e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15510.73200703 18331.02204904]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4117e-02, zero_eq: -1.0771e-01, zero_eq/P: -1.7373e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11441.96410478 15184.46566306]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11320.28606125 20921.75872013]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [ 9625.15820002 17443.9423554 ]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14230.93361478 17959.99154651]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2762e-02, zero_eq: -1.5622e-01, zero_eq/P: -2.5196e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15281.61791281 18167.51508854]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3869e-02, zero_eq: 3.3134e-01, zero_eq/P: 5.3442e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14454.62751488 23369.84682115]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3063e-02, zero_eq: 2.0808e+00, zero_eq/P: 3.3561e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13437.26392543 23684.38754228]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1954e-02, zero_eq: -1.3067e-02, zero_eq/P: -2.1076e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [16422.95267982 21336.38783566]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5187e-02, zero_eq: 5.6240e-01, zero_eq/P: 9.0710e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [18071.80451277 20091.27006242]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5568e-02, zero_eq: -2.8408e-01, zero_eq/P: -4.5819e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14020.30311946 21485.62696973]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2566e-02, zero_eq: -1.2961e-01, zero_eq/P: -2.0904e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15440.00381789 16484.60930953]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4017e-02, zero_eq: -2.6877e-03, zero_eq/P: -4.3350e-10
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15975.53459548 19846.88043147]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4658e-02, zero_eq: -9.6612e-04, zero_eq/P: -1.5583e-10
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11574.72108354 19395.39314888]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [20233.89898243 13538.65095002]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5062e-02, zero_eq: 2.0514e+00, zero_eq/P: 3.3087e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13294.1127459  15321.84189445]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1874e-02, zero_eq: 6.6313e-01, zero_eq/P: 1.0696e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13612.48565665 16725.31941232]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2140e-02, zero_eq: 2.4701e-01, zero_eq/P: 3.9840e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15074.72793758 20088.48496315]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3679e-02, zero_eq: -3.2186e-01, zero_eq/P: -5.1913e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13765.66878094 15017.06526048]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2342e-02, zero_eq: 2.4902e+00, zero_eq/P: 4.0164e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11482.93045461 20808.35676396]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10813.49802975 16039.32665684]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15721.33944134 17268.13066901]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4326e-02, zero_eq: -9.4452e-01, zero_eq/P: -1.5234e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14787.42586909 17905.63317038]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3345e-02, zero_eq: 1.4806e-01, zero_eq/P: 2.3880e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14056.20184099 18740.0516158 ]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2583e-02, zero_eq: -1.2195e+00, zero_eq/P: -1.9670e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12693.2217615  19497.20077228]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1146e-02, zero_eq: 5.0379e-02, zero_eq/P: 8.1257e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10300.08640959 17341.37982272]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10834.27222563 14825.80376571]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13467.89378372 17159.07526235]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1985e-02, zero_eq: 5.1962e-01, zero_eq/P: 8.3810e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14852.70650908 16783.72976569]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3406e-02, zero_eq: 2.1976e-01, zero_eq/P: 3.5445e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [20574.34101283 14833.88994847]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5047e-02, zero_eq: -9.0829e-02, zero_eq/P: -1.4650e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [17083.19784327 19275.93780983]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5909e-02, zero_eq: -3.1195e+00, zero_eq/P: -5.0315e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14180.30228495 18907.26249551]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2713e-02, zero_eq: -2.3495e-02, zero_eq/P: -3.7896e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12217.16841063 17237.19166013]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14040.31050576 14466.29281214]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2629e-02, zero_eq: -3.6229e-01, zero_eq/P: -5.8434e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10182.5106145  13783.46870672]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13965.59199174 20014.19757655]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2489e-02, zero_eq: 5.6391e-01, zero_eq/P: 9.0953e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14542.00876892 18010.72029395]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3089e-02, zero_eq: -3.5281e-02, zero_eq/P: -5.6905e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11122.90004987 18742.37983973]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13173.11915477 17630.45368553]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1678e-02, zero_eq: 1.3087e-01, zero_eq/P: 2.1108e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15613.85364057 22330.09484058]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4313e-02, zero_eq: 1.2149e+00, zero_eq/P: 1.9595e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13843.5722269  12833.04172209]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [19423.85471832 14122.67210893]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5107e-02, zero_eq: -1.4609e+00, zero_eq/P: -2.3564e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [16415.1034636  18492.96463281]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5111e-02, zero_eq: 1.0165e+00, zero_eq/P: 1.6395e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12760.53102079 17967.4615747 ]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1248e-02, zero_eq: -1.1135e-02, zero_eq/P: -1.7960e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [16073.90090965 15658.18655461]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.4675e-02, zero_eq: 3.9948e-01, zero_eq/P: 6.4432e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [17863.45330822 14767.8243491 ]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5760e-02, zero_eq: -4.4329e-01, zero_eq/P: -7.1499e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [15116.81390335 18719.22597207]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3703e-02, zero_eq: -4.2125e-01, zero_eq/P: -6.7943e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [11372.95989658 18954.47176936]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10864.83899722 18946.25533856]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12979.82929832 23938.73206709]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1456e-02, zero_eq: -6.4737e-03, zero_eq/P: -1.0442e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13158.82436854 19342.03607387]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1634e-02, zero_eq: 4.7174e-01, zero_eq/P: 7.6087e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12957.56456923 26160.70514874]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1470e-02, zero_eq: 5.9913e-02, zero_eq/P: 9.6634e-09
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [17439.51739322 18529.65186782]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.6115e-02, zero_eq: 5.3341e-01, zero_eq/P: 8.6034e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14261.01762338 20958.69705342]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.2815e-02, zero_eq: -3.6565e+00, zero_eq/P: -5.8976e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12263.5624285  17836.48437813]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12743.4437887  23885.76093282]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1194e-02, zero_eq: -6.9533e-01, zero_eq/P: -1.1215e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [18053.65241757 24677.59077323]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.5598e-02, zero_eq: -3.7068e+00, zero_eq/P: -5.9787e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12470.07477926 22167.22186156]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.0890e-02, zero_eq: -2.3844e+00, zero_eq/P: -3.8458e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [14717.58779968 14793.27587921]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.3280e-02, zero_eq: 6.8865e-02, zero_eq/P: 1.1107e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [ 9259.9152511  15782.95747786]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [17236.32905151 17714.91252248]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.6171e-02, zero_eq: 2.1367e-01, zero_eq/P: 3.4463e-08
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [13110.18142422 22626.66229018]
+INFO:packaged_shooting._model_ivp:shooting converged. l2loss: 1.1588e-02, zero_eq: 5.4031e+00, zero_eq/P: 8.7147e-07
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [10114.87882807 17241.10997174]
+DEBUG:packaged_shooting._model_ivp:Shooting API, l_gamma_d: [12966.92225027 15467.22475553]
