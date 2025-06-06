@@ -6,8 +6,8 @@ import numpy as np
 
 #%%
 
-linel_idata_1 = cloudpickle.load(open("results\\linearelastic_idata_1.pkl", "rb"))
-linel_idata_2 = cloudpickle.load(open("results\\linearelastic_idata_2.pkl", "rb"))
+linel_idata_1 = cloudpickle.load(open("results_new\\linearelastic_idata_3,6.pkl", "rb"))
+linel_idata_2 = cloudpickle.load(open("results_new\\linearelastic_idata_4,6.pkl", "rb"))
 
 #%%
 sf = 1e6

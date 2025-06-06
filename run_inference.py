@@ -6,54 +6,64 @@ import pymc as pm
 
 if __name__ == "__main__":
     config = inference.InferenceConfig(
-        P = 4.6e6
-    )
-        # inferred_forward_params_dict = {
-        #     "l_gamma_d" : {
-        #         "dist" : pm.LogNormal,
-        #         "wrapper_fun" : inference._get_lognormal_params,
-        #         "args" : {
-        #             "mean" : np.array([14.5e3, 18e3]),
-        #             "stdev" : np.array([3e3, 3e3]),
-        #         }
-        #     },
-        #     "l_e" : {
-        #         "dist" : pm.TruncatedNormal,
-        #         "wrapper_fun" : None,
-        #         "args" : {
-        #             "mu" : np.array([0.8, 0.45]),
-        #             "sigma" : np.array([0.2, 0.2]),
-        #             "lower" : 0.01,
-        #             "upper" : 1.0,
-        #         }
-        #     },
-        #     "l_c2" : { # beta
-        #         "dist" : pm.LogNormal,
-        #         "wrapper_fun" : inference._get_lognormal_params,
-        #         "args" : {
-        #             "mean" : 1.25*np.array([0.214, 0.46]),
-        #             "stdev" : 1.25*np.array([0.08, 0.08]),
-        #         }
-        #     },
-        #     "l_shaft_pressure_limit" : {
-        #         "dist" : pm.LogNormal,
-        #         "wrapper_fun" : inference._get_lognormal_params,
-        #         "args" : {
-        #             "mean" : np.array([47.8e3, 96e3]),
-        #             "stdev" : np.array([20e3, 20e3]),
-        #         }
-        #     }
-        # }
+        P = 3.6e6,
+    #     inferred_forward_params_dict = {
+    #         "l_gamma_d": {
+    #             "dist": pm.Uniform,
+    #             "wrapper_fun": None,
+    #             "args": {
+    #                 "lower": np.array([9e3, 9e3]),
+    #                 "upper": np.array([30e3, 30e3]),
+    #             }
+    #         }
+    #     }
     # )
+        inferred_forward_params_dict = {
+            "l_gamma_d" : {
+                "dist" : pm.LogNormal,
+                "wrapper_fun" : inference._get_lognormal_params,
+                "args" : {
+                    "mean" : np.array([14.5e3, 18e3]),
+                    "stdev" : np.array([3e3, 3e3]),
+                }
+            },
+            "l_e" : {
+                "dist" : pm.TruncatedNormal,
+                "wrapper_fun" : None,
+                "args" : {
+                    "mu" : np.array([0.8, 0.45]),
+                    "sigma" : np.array([0.2, 0.2]),
+                    "lower" : 0.01,
+                    "upper" : 1.0,
+                }
+            },
+            "l_c2" : { # beta
+                "dist" : pm.LogNormal,
+                "wrapper_fun" : inference._get_lognormal_params,
+                "args" : {
+                    "mean" : 1.25*np.array([0.214, 0.46]),
+                    "stdev" : 1.25*np.array([0.08, 0.08]),
+                }
+            },
+            "l_shaft_pressure_limit" : {
+                "dist" : pm.LogNormal,
+                "wrapper_fun" : inference._get_lognormal_params,
+                "args" : {
+                    "mean" : np.array([47.8e3, 96e3]),
+                    "stdev" : np.array([20e3, 20e3]),
+                }
+            }
+        }
+    )
 
-    data_dir = r"C:\Users\gregk\Documents\MyDocuments\IIB\Project\Alt Code\Model - Concrete Cracking\observed\compression-4,6MN-strain_corrected.csv"
+    data_dir = r"C:\Users\gregk\Documents\MyDocuments\IIB\Project\Alt Code\Model - Concrete Cracking\observed\compression-3,6MN-strain_corrected.csv"
     m1 = inference.make_pymc_model(solver_type = "scipy_fsolve_bvp", data_dir=data_dir, inference_config=config)
 
     #%%
 
     # plot an example profile to verify the deterministic function works
-    # prior = (np.array([15000, 17000]), np.array([0.8, 0.45]), 1.25*np.array([0.214, 0.46]), np.array([47.8e3, 96e3]))
-    prior = (np.array([15000, 17000]),)
+    prior = (np.array([15000, 17000]), np.array([0.8, 0.45]), 1.25*np.array([0.214, 0.46]), np.array([47.8e3, 96e3]))
+    # prior = (np.array([15000, 17000]),)
     _ = inference.plot_profile(m1, prior)
 
     #%% prior predictive
@@ -76,11 +86,11 @@ if __name__ == "__main__":
     idata_prior.extend(idata_posterior)
 
     import cloudpickle
-    save_name = "results\\h_idata.pkl"
+    save_name = "results_new\\h_idata.pkl"
     with open(save_name, "wb") as f:
         cloudpickle.dump(idata_prior, f)
 
-    model_save_name = "results\\h_model.pkl"
+    model_save_name = "results_new\\h_model.pkl"
     with open(model_save_name, "wb") as f:
         cloudpickle.dump(m1.model, f)
 

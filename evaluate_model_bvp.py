@@ -6,11 +6,12 @@ import copy
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 import json
+from matplotlib.lines import Line2D
 
 from packaged_shooting._model_ivp import shooting_api
 from packaged_shooting._model_bvp import forward_api as bvp_api
 
-P = 4.6e6 # top axial load
+P = 3.6e6 # top axial load
 N = 100 # number of nodes along pile
 z_w = 3 # water table depth in m
 
@@ -81,13 +82,19 @@ for i in range(100):
 
 #%%
 
-plt.plot(z, res.F, label='Shooting API')
-plt.plot(z, res2.F, label='BVP API', linestyle='--')
-plt.xlabel('Depth (m)')
-plt.ylabel('Force (N)')
+legend_elements = [Line2D([0], [0], color='steelblue', ls='--',lw=2, label='API'),
+                   Line2D([0], [0], color='k', ls='-', lw=2, label='Theoretical (Poulos)'),
+                   Line2D([0], [0], color='k', marker="x", lw=0, label='Empirical (Poulos)')]
+
+# plt.plot(z, res.F, label='Shooting API')
+plt.plot(z, res2.F, label='BVP API', linestyle='--', color='steelblue')
+plt.xlabel('Depth $z$ (m)')
+plt.ylabel('Axial Force $F$ (N)')
 plt.xlim(0,pile_L)
-plt.legend()
+plt.ylim(bottom=0)
+plt.legend(handles=legend_elements)
 plt.grid()
+plt.savefig("results\\axial_force_profile_3,6.png", dpi=300, bbox_inches='tight')
 plt.show()
 
 # %%
