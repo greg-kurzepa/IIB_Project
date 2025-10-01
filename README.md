@@ -9,6 +9,6 @@ The main idea is to use strain gauge data from existing piles to probabilistical
 
 <img width="288" height="176" alt="image" src="https://github.com/user-attachments/assets/4649f4e0-01ae-48d7-bb3b-0656cb83717a" />
 
-This reduced uncertainty on predicted loading on the pile, which potentially allows for less material-intensive design:
+This reduces uncertainty on predicted loading on the pile, which potentially allows for less material-intensive design:
 
 <img width="672" height="746" alt="image" src="https://github.com/user-attachments/assets/f5bcb898-1299-4bab-8d5f-6cb1bc3f1e97" />
