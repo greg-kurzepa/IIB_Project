@@ -5,7 +5,7 @@ This repository contains the code used for my master's thesis, title above. The 
 The file that does Bayesian inference for the linear-elastic soil-pile model is `infer_linearelastic.py`.
 The file that does Bayesian inference for the nonlinear API soil-pile model is `run_inference.py`.
 
-The main idea was to use strain gauge data from existing piles to probabilistically back-analyse soil parameters, taking measurement error and other unmodelled randomness into account. Here is an example of an update to a prior soil parameter (unit weight), providing a data-informed posterior:
+The main idea is to use strain gauge data from existing piles to probabilistically back-analyse soil parameters, taking measurement error and other unmodelled randomness into account. Here is an example of an update to a prior soil parameter (unit weight), providing a data-informed posterior:
 
 <img width="288" height="176" alt="image" src="https://github.com/user-attachments/assets/4649f4e0-01ae-48d7-bb3b-0656cb83717a" />
 
